@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,6 +18,9 @@ body {
   overflow-x: hidden;
 }
 
+
+
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -32,7 +36,29 @@ a {
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
 
+::-webkit-scrollbar-track {
+  background: #0F6C68;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: none;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.gradient-bg {
+  background: radial-gradient(circle at 47% 0%, rgba(15, 108, 104, 1) 4%, rgba(233, 233, 233, 1) 54%);
+  
+}
 
 @media (prefers-color-scheme: dark) {
   html {

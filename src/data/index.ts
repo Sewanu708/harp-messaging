@@ -2,6 +2,9 @@ import { MdOutlineNotifications } from 'react-icons/md';
 import { FiMail } from "react-icons/fi";
 import { RiMessage2Line } from 'react-icons/ri';
 import { BsWhatsapp } from 'react-icons/bs';
+function randomId() {
+  return new Date().getTime() + Math.random().toString(36).substring(2, 9);
+}
 export const sidebarItems = [
   {
     header: "Email",
@@ -12,13 +15,15 @@ export const sidebarItems = [
         path: "/email/send"
       },
       {
+   
         label: "View Mails",
         path: "/email/list"
       },
       {
         label: "Domains",
+        id: randomId(),
         items: [
-          {
+          { 
             label: "Manage Domains",
             path: "/email/domains"
           }
@@ -26,6 +31,7 @@ export const sidebarItems = [
       },
       {
         label: "API Keys",
+        id: randomId(),
         items: [
           {
             label: "Manage Keys",
@@ -35,6 +41,7 @@ export const sidebarItems = [
       },
       {
         label: "Templates",
+        id: randomId(),
         items: [
           {
             label: "Email Templates",
@@ -48,6 +55,7 @@ export const sidebarItems = [
       },
       {
         label: "Webhooks",
+        id: randomId(),
         items: [
           {
             label: "Manage Webhooks",
@@ -67,6 +75,7 @@ export const sidebarItems = [
       },
       {
         label: "Templates",
+        id: randomId(),
         items: [
           {
             label: "SMS Templates",
@@ -76,6 +85,7 @@ export const sidebarItems = [
       },
       {
         label: "Webhooks",
+        id: randomId(),
         items: [
           {
             label: "Manage Webhooks",
@@ -95,6 +105,7 @@ export const sidebarItems = [
       },
       {
         label: "Templates",
+        id: randomId(),
         items: [
           {
             label: "WhatsApp Templates",
@@ -104,6 +115,7 @@ export const sidebarItems = [
       },
       {
         label: "Webhooks",
+        id: randomId(),
         items: [
           {
             label: "Manage Webhooks",
@@ -123,6 +135,7 @@ export const sidebarItems = [
       },
       {
         label: "Templates",
+        id: randomId(),
         items: [
           {
             label: "Notification Templates",
@@ -132,6 +145,7 @@ export const sidebarItems = [
       },
       {
         label: "Webhooks",
+        id: randomId(),
         items: [
           {
             label: "Manage Webhooks",

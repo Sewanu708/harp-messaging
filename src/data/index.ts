@@ -1,67 +1,144 @@
-import { MdEmail, MdDomain, MdVpnKey, MdWebhook, MdOutlineMarkEmailUnread, MdOutlineEmail } from 'react-icons/md';
-import { FaRegFileAlt } from 'react-icons/fa';
+import { MdOutlineNotifications } from 'react-icons/md';
 import { FiMail } from "react-icons/fi";
-import { HiOutlineTemplate } from "react-icons/hi";
-import { LuWebhook } from "react-icons/lu";
+import { RiMessage2Line } from 'react-icons/ri';
+import { BsWhatsapp } from 'react-icons/bs';
 export const sidebarItems = [
   {
     header: "Email",
+    icon: FiMail,
     items: [
       {
         label: "Send Mail",
-        icon: MdOutlineEmail,
         path: "/email/send"
       },
       {
         label: "View Mails",
-        icon: MdOutlineMarkEmailUnread,
         path: "/email/list"
       },
       {
-        label: "Send with Template",
-        icon: FaRegFileAlt,
-        path: "/email/template-send"
+        label: "Domains",
+        items: [
+          {
+            label: "Manage Domains",
+            path: "/email/domains"
+          }
+        ]
+      },
+      {
+        label: "API Keys",
+        items: [
+          {
+            label: "Manage Keys",
+            path: "/email/api-keys"
+          }
+        ]
+      },
+      {
+        label: "Templates",
+        items: [
+          {
+            label: "Email Templates",
+            path: "/email/templates"
+          },
+          {
+            label: "Send with Template",
+            path: "/email/template-send"
+          }
+        ]
+      },
+      {
+        label: "Webhooks",
+        items: [
+          {
+            label: "Manage Webhooks",
+            path: "/email/webhooks"
+          }
+        ]
       }
-    ], icon: FiMail,
+    ]
   },
   {
-    header: "Domains",
+    header: "SMS",
+    icon: RiMessage2Line,
     items: [
       {
-        label: "Manage Domains",
-        icon: MdDomain,
-        path: "/email/domains"
+        label: "Send SMS",
+        path: "/sms/send"
+      },
+      {
+        label: "Templates",
+        items: [
+          {
+            label: "SMS Templates",
+            path: "/sms/templates"
+          }
+        ]
+      },
+      {
+        label: "Webhooks",
+        items: [
+          {
+            label: "Manage Webhooks",
+            path: "/sms/webhooks"
+          }
+        ]
       }
-    ],icon: MdDomain,
+    ]
   },
   {
-    header: "API Keys",
+    header: "WhatsApp",
+    icon: BsWhatsapp,
     items: [
       {
-        label: "Manage Keys",
-        icon: MdVpnKey,
-        path: "/email/api-keys"
+        label: "Send WhatsApp",
+        path: "/whatsapp/send"
+      },
+      {
+        label: "Templates",
+        items: [
+          {
+            label: "WhatsApp Templates",
+            path: "/whatsapp/templates"
+          }
+        ]
+      },
+      {
+        label: "Webhooks",
+        items: [
+          {
+            label: "Manage Webhooks",
+            path: "/whatsapp/webhooks"
+          }
+        ]
       }
-    ], icon: MdVpnKey
+    ]
   },
   {
-    header: "Templates",
+    header: "Push Notification",
+    icon: MdOutlineNotifications,
     items: [
       {
-        label: "Email Templates",
-        icon: FaRegFileAlt,
-        path: "/email/templates"
-      }
-    ], icon: HiOutlineTemplate
-  },
-  {
-    header: "Webhooks",
-    items: [
+        label: "Send Notification",
+        path: "/push/send"
+      },
       {
-        label: "Manage Webhooks",
-        icon: MdWebhook,
-        path: "/email/webhooks"
+        label: "Templates",
+        items: [
+          {
+            label: "Notification Templates",
+            path: "/push/templates"
+          }
+        ]
+      },
+      {
+        label: "Webhooks",
+        items: [
+          {
+            label: "Manage Webhooks",
+            path: "/push/webhooks"
+          }
+        ]
       }
-    ], icon: LuWebhook
+    ]
   }
 ];

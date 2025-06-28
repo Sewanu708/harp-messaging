@@ -1,6 +1,7 @@
 'use client';
 import { GlobalContext } from "@/context";
 import { sidebarItems } from "@/data";
+import Link from "next/link";
 import { useContext, useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import { MdKeyboardArrowDown, MdOutlineDashboard } from "react-icons/md";
@@ -8,7 +9,7 @@ import { MdKeyboardArrowDown, MdOutlineDashboard } from "react-icons/md";
 export default function SideBar() {
 
     const [activeDropdown, setActiveDropdown] = useState<string[]>([]);
-    const [collapseSidebar, setCollapseSidebar] = useState(false);
+    const [collapseSidebar, setCollapseSidebar] = useState(true);
     const context = useContext(GlobalContext)
     if (!context) return 'Error, Context is undefined'
     const { setSelectedChannel, selectedChannel } = context
@@ -54,10 +55,10 @@ export default function SideBar() {
                             Main Menu
                         </div>
                     )}
-                    <div className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
+                    <Link href={'/dashboard'} className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
                         ? 'justify-center px-4'
                         : 'px-2 justify-start mx-4 rounded-lg hover:shadow-sm hover:bg-[#0F6C68]/5'
-                        }`}>
+                        }`} onClick={()=>setSelectedChannel('dashboard')}>
                         <div className="flex items-center rounded-lg bg-[#0F6C68]/10 justify-center w-10 h-10">
                             <MdOutlineDashboard className="text-[#0F6C68] text-2xl" />
                         </div>
@@ -67,12 +68,12 @@ export default function SideBar() {
                                     Dashboard
                                 </span>
                                 {
-                                    selectedChannel === 'Dashboard' && <div className="absolute left-0 w-1 h-8 bg-[#0F6C68] rounded-r-full opacity-100"></div>
+                                    selectedChannel === 'dashboard' && <div className="absolute left-0 w-1 h-8 bg-[#0F6C68] rounded-r-full opacity-100"></div>
                                 }
                             </>
 
                         )}
-                    </div>
+                    </Link>
 
                     <div>
                         {!collapseSidebar && (
@@ -81,9 +82,9 @@ export default function SideBar() {
                             </div>
                         )}
 
-                        <ul>
+                        <div>
                             {sidebarItems.map((section) => (
-                                <li key={section.header} className="group">
+                                <Link href={section.pathName}  key={section.header} className="group">
                                     <div
                                         className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
                                             ? 'justify-center px-4'
@@ -91,7 +92,7 @@ export default function SideBar() {
                                             } ${handleDropdown(section.header) ? 'bg-zinc-200' : ''}`}
                                         onClick={() => {
                                             setCollapseSidebar(false)
-                                            setSelectedChannel(section.header)
+                                            setSelectedChannel(section.pathName)
                                             handleDropdownToggle(section.header)
                                         }}
                                     >
@@ -107,7 +108,7 @@ export default function SideBar() {
                                             className={`transition-all duration-300 ml-auto text-zinc-500 ${handleDropdown(section.header) ? 'rotate-180' : ''
                                                 }`}
                                         />
-                                        {selectedChannel === section.header && (
+                                        {selectedChannel === section.pathName && (
                                             <div className="absolute left-0 w-1 h-8 bg-[#0F6C68] rounded-r-full opacity-100"></div>
                                         )}
                                             </>
@@ -134,9 +135,9 @@ export default function SideBar() {
                                             ))}
                                         </ul>
                                     )}
-                                </li>
+                                </Link>
                             ))}
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@ export const sidebarItems = [
   {
     header: "Email",
     icon: FiMail,
+    pathName:'email',
     items: [
       {
         label: "Send Mail",
@@ -68,6 +69,7 @@ export const sidebarItems = [
   {
     header: "SMS",
     icon: RiMessage2Line,
+    pathName:'message',
     items: [
       {
         label: "Send SMS",
@@ -98,6 +100,7 @@ export const sidebarItems = [
   {
     header: "WhatsApp",
     icon: BsWhatsapp,
+    pathName:'whatsapp',
     items: [
       {
         label: "Send WhatsApp",
@@ -128,6 +131,7 @@ export const sidebarItems = [
   {
     header: "Push Notification",
     icon: MdOutlineNotifications,
+    pathName:'notification',
     items: [
       {
         label: "Send Notification",

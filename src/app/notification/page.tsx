@@ -4,7 +4,7 @@ function Page() {
     return (
         <main className="flex">
             <SideBar />
-            <div>Dashboard</div>
+            <div>Notifcation</div>
         </main>
     )
 }

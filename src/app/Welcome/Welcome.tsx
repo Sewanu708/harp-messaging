@@ -6,48 +6,41 @@ import { RiMessage2Line } from "react-icons/ri";
 import { BsWhatsapp } from "react-icons/bs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { useContext } from "react";
 import { GlobalContext } from "@/context";
-import Link from "next/link";
 
 const items = [
     {
         header: "Email",
         icon: FiMail,
         description: "Send beautiful transactional emails",
-        path: '/Pages/Email'
+        path: '/email'
     },
     {
         header: "SMS",
         icon: RiMessage2Line,
         description: "Reach users with instant text alerts",
-        path: '/Pages/Message'
+        path: '/message'
     },
     {
         header: "WhatsApp",
         icon: BsWhatsapp,
         description: "Engage via personalized messages",
-        path: '/Pages/Whatsapp'
+        path: '/whatsapp'
     },
     {
         header: "Push Notification",
         icon: MdOutlineNotifications,
         description: "Trigger in-app or browser pushes",
-        path: '/Pages/PushNotification'
+        path: '/notification'
     },
 ];
 
 export default function Welcome() {
     const context = useContext(GlobalContext)
-    if (!context) {
-        return 'Error, context is undefined'
-    }
-
-    const { selectedChannel, setSelectedChannel } = context
-
-    function handleSelectChannel(channel: string) {
-
-    }
+    if (!context) return 'Context is undefined'
+    const {setSelectedChannel} = context
     return (
         <div className="gradient-bg min-h-screen w-full flex flex-col items-center justify-center px-4 py-10">
             <div className="text-center mb-6">
@@ -64,7 +57,7 @@ export default function Welcome() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl px-4">
                 {items.map((item, index) => (
-                    <Link href={'/dashboard'} onClick={() => setSelectedChannel(item.header)} key={index}>
+                    <Link href={item.path} onClick={() => setSelectedChannel(item.header)} key={index}>
                         <Card
 
                             className="hover:shadow-md transition-shadow  cursor-pointer shadow-xl  duration-300 bg-white rounded-2xl"

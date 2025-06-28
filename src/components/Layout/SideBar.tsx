@@ -9,7 +9,7 @@ import { MdKeyboardArrowDown, MdOutlineDashboard } from "react-icons/md";
 export default function SideBar() {
 
     const [activeDropdown, setActiveDropdown] = useState<string[]>([]);
-    const [collapseSidebar, setCollapseSidebar] = useState(true);
+    const [collapseSidebar, setCollapseSidebar] = useState(false);
     const context = useContext(GlobalContext)
     if (!context) return 'Error, Context is undefined'
     const { setSelectedChannel, selectedChannel } = context

@@ -1,6 +1,7 @@
 'use client';
+import { GlobalContext } from "@/context";
 import { sidebarItems } from "@/data";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import { MdKeyboardArrowDown, MdOutlineDashboard } from "react-icons/md";
 
@@ -8,7 +9,9 @@ export default function SideBar() {
 
     const [activeDropdown, setActiveDropdown] = useState<string[]>([]);
     const [collapseSidebar, setCollapseSidebar] = useState(false);
-
+    const context = useContext(GlobalContext)
+    if (!context) return 'Error, Context is undefined'
+    const { setSelectedChannel, selectedChannel } = context
     const handleDropdownToggle = (header: string) => {
         if (activeDropdown.includes(header)) {
             setActiveDropdown(activeDropdown.filter(item => item !== header));
@@ -59,12 +62,18 @@ export default function SideBar() {
                             <MdOutlineDashboard className="text-[#0F6C68] text-2xl" />
                         </div>
                         {!collapseSidebar && (
-                            <span className="text-[#0F6C68] transition-all duration-300 font-[600]">
-                                Dashboard
-                            </span>
+                            <>
+                                <span className="text-[#0F6C68] transition-all duration-300 font-[600]">
+                                    Dashboard
+                                </span>
+                                {
+                                    selectedChannel === 'Dashboard' && <div className="absolute left-0 w-1 h-8 bg-[#0F6C68] rounded-r-full opacity-100"></div>
+                                }
+                            </>
+
                         )}
                     </div>
-                    
+
                     <div>
                         {!collapseSidebar && (
                             <div className="text-zinc-500 font-[600] text-[12px] uppercase mt-8 px-8 mb-2">
@@ -78,10 +87,13 @@ export default function SideBar() {
                                     <div
                                         className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
                                             ? 'justify-center px-4'
-                                            : 'px-2 justify-start mx-4 rounded-lg hover:shadow-xl'
+                                            : 'px-2 justify-start mx-4 rounded-lg relative hover:shadow-xl'
                                             } ${handleDropdown(section.header) ? 'bg-zinc-200' : ''}`}
-                                        onClick={() => { setCollapseSidebar(false)
-                                            handleDropdownToggle(section.header)}}
+                                        onClick={() => {
+                                            setCollapseSidebar(false)
+                                            setSelectedChannel(section.header)
+                                            handleDropdownToggle(section.header)
+                                        }}
                                     >
                                         <div className="flex items-center rounded-lg bg-[#0F6C68]/10 justify-center w-10 h-10">
                                             <section.icon className="text-[#0F6C68] text-2xl" />
@@ -91,12 +103,16 @@ export default function SideBar() {
                                                 <span className="text-[#0F6C68] transition-all duration-300 font-[600]">
                                                     {section.header}
                                                 </span>
-                                                <MdKeyboardArrowDown
-                                                    className={`transition-all duration-300 ml-auto text-zinc-500 ${handleDropdown(section.header) ? 'rotate-180' : ''
-                                                        }`}
-                                                />
+                                        <MdKeyboardArrowDown
+                                            className={`transition-all duration-300 ml-auto text-zinc-500 ${handleDropdown(section.header) ? 'rotate-180' : ''
+                                                }`}
+                                        />
+                                        {selectedChannel === section.header && (
+                                            <div className="absolute left-0 w-1 h-8 bg-[#0F6C68] rounded-r-full opacity-100"></div>
+                                        )}
                                             </>
                                         )}
+                                        
                                     </div>
 
                                     {handleDropdown(section.header) && !collapseSidebar && (

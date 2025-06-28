@@ -3,13 +3,13 @@ import { createContext, useState } from "react";
 
 export const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 interface GlobalContextType {
-    collapseSidebar: boolean;
-    setCollapseSidebar: (value: boolean) => void
+    selectedChannel: string;
+    setSelectedChannel: (value: string) => void
 };
 function GlobalState({ children }: { children: React.ReactNode }) {
-    const [collapseSidebar, setCollapseSidebar] = useState(false);
+    const [selectedChannel, setSelectedChannel] = useState('');
     return (
-        <GlobalContext.Provider value={{ collapseSidebar, setCollapseSidebar }}>
+        <GlobalContext.Provider value={{ selectedChannel, setSelectedChannel }}>
             {children}
         </GlobalContext.Provider>
     );

@@ -1,0 +1,90 @@
+'use client'
+import { BiDownArrowCircle } from "react-icons/bi";
+import { MdOutlineNotifications } from "react-icons/md";
+import { FiMail } from "react-icons/fi";
+import { RiMessage2Line } from "react-icons/ri";
+import { BsWhatsapp } from "react-icons/bs";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useContext } from "react";
+import { GlobalContext } from "@/context";
+import Link from "next/link";
+
+const items = [
+    {
+        header: "Email",
+        icon: FiMail,
+        description: "Send beautiful transactional emails",
+        path: '/Pages/Email'
+    },
+    {
+        header: "SMS",
+        icon: RiMessage2Line,
+        description: "Reach users with instant text alerts",
+        path: '/Pages/Message'
+    },
+    {
+        header: "WhatsApp",
+        icon: BsWhatsapp,
+        description: "Engage via personalized messages",
+        path: '/Pages/Whatsapp'
+    },
+    {
+        header: "Push Notification",
+        icon: MdOutlineNotifications,
+        description: "Trigger in-app or browser pushes",
+        path: '/Pages/PushNotification'
+    },
+];
+
+export default function Welcome() {
+    const context = useContext(GlobalContext)
+    if (!context) {
+        return 'Error, context is undefined'
+    }
+
+    const { selectedChannel, setSelectedChannel } = context
+
+    function handleSelectChannel(channel: string) {
+
+    }
+    return (
+        <div className="gradient-bg min-h-screen w-full flex flex-col items-center justify-center px-4 py-10">
+            <div className="text-center mb-6">
+                <h1 className="text-4xl font-extrabold text-zinc-800">Good Morning, Pelz 👋</h1>
+                <p className="text-xl mt-2 text-[#0F6C68]">
+                    Welcome to <span className="font-bold">Harp</span>
+                </p>
+            </div>
+
+            <div className="text-center text-lg sm:text-xl text-zinc-600 italic mb-10 flex justify-center items-center gap-2">
+                <span>Choose a messaging channel to get started</span>
+                <span className="text-2xl animate-bounce"><BiDownArrowCircle /></span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl px-4">
+                {items.map((item, index) => (
+                    <Link href={'/dashboard'} onClick={() => setSelectedChannel(item.header)} key={index}>
+                        <Card
+
+                            className="hover:shadow-md transition-shadow  cursor-pointer shadow-xl  duration-300 bg-white rounded-2xl"
+                        >
+                            <CardHeader className="flex flex-col items-start space-y-2">
+                                <item.icon className="text-3xl text-[#0F6C68]" />
+                                <CardTitle className="text-lg">{item.header}</CardTitle>
+                            </CardHeader>
+                            <CardContent className="h-8">
+                                <CardDescription>{item.description}</CardDescription>
+                            </CardContent>
+                            <CardFooter>
+                                <Button className="text-[#0F6C68] cursor-pointer hover:scale-105 transition-all duration-200 ease-in" variant={'outline'}>
+                                    Get Started
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    </Link>
+                ))}
+            </div>
+        </div>
+    );
+}

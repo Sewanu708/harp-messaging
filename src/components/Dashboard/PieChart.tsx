@@ -8,12 +8,7 @@ interface dataProps {
     value: number,
     color: string
 }
-const chartConfig = {
-    data: {
-        label: 'Data',
-        color: '#0F6C68',
-    }
-}
+
 
 function Piechart({ data }: PieProps) {
     return (

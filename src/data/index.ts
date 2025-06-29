@@ -9,14 +9,14 @@ export const sidebarItems = [
   {
     header: "Email",
     icon: FiMail,
-    pathName:'email',
+    pathName: 'email',
     items: [
       {
         label: "Send Mail",
         path: "/email/send"
       },
       {
-   
+
         label: "View Mails",
         path: "/email/list"
       },
@@ -24,7 +24,7 @@ export const sidebarItems = [
         label: "Domains",
         id: randomId(),
         items: [
-          { 
+          {
             label: "Manage Domains",
             path: "/email/domains"
           }
@@ -69,7 +69,7 @@ export const sidebarItems = [
   {
     header: "SMS",
     icon: RiMessage2Line,
-    pathName:'message',
+    pathName: 'message',
     items: [
       {
         label: "Send SMS",
@@ -100,7 +100,7 @@ export const sidebarItems = [
   {
     header: "WhatsApp",
     icon: BsWhatsapp,
-    pathName:'whatsapp',
+    pathName: 'whatsapp',
     items: [
       {
         label: "Send WhatsApp",
@@ -131,7 +131,7 @@ export const sidebarItems = [
   {
     header: "Push Notification",
     icon: MdOutlineNotifications,
-    pathName:'notification',
+    pathName: 'notification',
     items: [
       {
         label: "Send Notification",
@@ -160,3 +160,86 @@ export const sidebarItems = [
     ]
   }
 ];
+
+export const emailData = [
+  {
+    "message_id": "msg_1001",
+    "timestamp": "2025-06-28T10:14:22Z",
+    "recipient": "jane.doe@example.com",
+    "sender": "no-reply@yourapp.com",
+    "subject": "Welcome to Our Service",
+    "template_used": "welcome_email",
+    "status": "Delivered",
+    "delivery_time_ms": 320,
+    "ip_address": "198.51.100.23",
+    "tags": ["welcome", "user"],
+    "response_code": "250 ",
+    "error_message": null,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0)",
+    "geo_location": "USA"
+  },
+  {
+    "message_id": "msg_1002",
+    "timestamp": "2025-06-28T10:16:40Z",
+    "recipient": "john.smith@example.net",
+    "sender": "support@yourapp.com",
+    "subject": "Reset Your Password",
+    "template_used": "password_reset",
+    "status": "Soft Bounce",
+    "delivery_time_ms": null,
+    "ip_address": "203.0.113.5",
+    "tags": ["security", "password"],
+    "response_code": "450 ",
+    "error_message": "Mailbox temporarily unavailable",
+    "user_agent": null,
+    "geo_location": "UK"
+  },
+  {
+    "message_id": "msg_1003",
+    "timestamp": "2025-06-28T10:18:10Z",
+    "recipient": "sally.green@example.org",
+    "sender": "billing@yourapp.com",
+    "subject": "Your Invoice #INV-202506",
+    "template_used": "invoice_email",
+    "status": "Delivered",
+    "delivery_time_ms": 415,
+    "ip_address": "203.0.113.18",
+    "tags": ["billing", "invoice"],
+    "response_code": "250",
+    "error_message": null,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X)",
+    "geo_location": "Canada"
+  },
+  {
+    "message_id": "msg_1004",
+    "timestamp": "2025-06-28T10:19:55Z",
+    "recipient": "invaliduser@nonexistent.com",
+    "sender": "no-reply@yourapp.com",
+    "subject": "Confirm Your Email",
+    "template_used": "email_confirmation",
+    "status": "Hard Bounce",
+    "delivery_time_ms": null,
+    "ip_address": "192.0.2.45",
+    "tags": ["auth", "confirm"],
+    "response_code": "550",
+    "error_message": "User does not exist",
+    "user_agent": null,
+    "geo_location": "Nigeria"
+  },
+  {
+    "message_id": "msg_1005",
+    "timestamp": "2025-06-28T10:21:05Z",
+    "recipient": "alex.perez@example.com",
+    "sender": "no-reply@yourapp.com",
+    "subject": "Security Alert: New Login",
+    "template_used": "security_alert",
+    "status": "Delivered",
+    "delivery_time_ms": 288,
+    "ip_address": "198.51.100.78",
+    "tags": ["security"],
+    "response_code": "250 ",
+    "error_message": null,
+    "user_agent": "Mozilla/5.0 (Android 10)",
+    "geo_location": "Mexico"
+  }
+]

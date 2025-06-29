@@ -1,12 +1,10 @@
-import SideBar from "@/components/Layout/SideBar"
 
-function Page() {
+function Email() {
     return (
         <main className="flex">
-            <SideBar />
             <div>Email</div>
         </main>
     )
 }
 
-export default Page
+export default Email

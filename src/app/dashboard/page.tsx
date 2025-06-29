@@ -8,7 +8,7 @@ import Barchart from "@/components/Dashboard/BarChart";
 import Table from "@/components/Table";
 import { emailData } from "@/data";
 import Piechart from "@/components/Dashboard/PieChart";
-export const kpiData = [
+const kpiData = [
     {
         number: 1200,
         percentage: 100,

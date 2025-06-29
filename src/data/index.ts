@@ -5,6 +5,7 @@ import { BsWhatsapp } from 'react-icons/bs';
 function randomId() {
   return new Date().getTime() + Math.random().toString(36).substring(2, 9);
 }
+
 export const sidebarItems = [
   {
     header: "Email",

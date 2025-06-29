@@ -12,6 +12,15 @@ export default function SideBar() {
     const [activeInnerDropdown, setActiveInnerDropdown] = useState<string>('');
     const [collapseSidebar, setCollapseSidebar] = useState(false);
     const context = useContext(GlobalContext)
+        useEffect(() => {
+        if (width < 850) {
+            setCollapseSidebar(true);
+            console.log(width)
+        } else {
+            setCollapseSidebar(false);
+            console.log(width)
+        }
+    }, [context?.width])
     if (!context) return 'Error, Context is undefined'
     const { setSelectedChannel, selectedChannel, width } = context
     const handleDropdownToggle = (header: string) => {
@@ -35,15 +44,7 @@ export default function SideBar() {
 
 
 
-    useEffect(() => {
-        if (width < 850) {
-            setCollapseSidebar(true);
-            console.log(width)
-        } else {
-            setCollapseSidebar(false);
-            console.log(width)
-        }
-    }, [width])
+
     return (
         <div className={`h-screen min-w-16 relative bg-white shadow-xl text-white overflow-y-hidden ${collapseSidebar ? 'w-16' : 'w-64'} transition-all duration-300 flex justify-between flex-col`}>
             <button className={`hover:scale-95 absolute top-3.5 rounded-xl text-[#0F6C68] z-50 bg-white right-[5px] p-2 transition-all duration-300 cursor-pointer group ${collapseSidebar ? 'left-10 ' : 'right-0 rotate-180'}`} onClick={() => {

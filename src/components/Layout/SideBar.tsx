@@ -8,24 +8,32 @@ import { MdKeyboardArrowDown, MdOutlineDashboard } from "react-icons/md";
 
 export default function SideBar() {
 
-    const [activeDropdown, setActiveDropdown] = useState<string[]>([]);
+    const [activeDropdown, setActiveDropdown] = useState<string>('');
+    const [activeInnerDropdown, setActiveInnerDropdown] = useState<string>('');
     const [collapseSidebar, setCollapseSidebar] = useState(false);
     const context = useContext(GlobalContext)
     if (!context) return 'Error, Context is undefined'
-    const { setSelectedChannel, selectedChannel,width } = context
+    const { setSelectedChannel, selectedChannel, width } = context
     const handleDropdownToggle = (header: string) => {
-        if (activeDropdown.includes(header)) {
-            setActiveDropdown(activeDropdown.filter(item => item !== header));
+        if (activeDropdown === header) {
+            setActiveDropdown('');
         } else {
-            setActiveDropdown([...activeDropdown, header]);
+            setActiveDropdown(header)
         }
     };
 
+    const handleInnerDropdownToggle = (label: string) => {
+        if (activeInnerDropdown === label) {
+            setActiveInnerDropdown('');
+        } else {
+            setActiveInnerDropdown(label);
+        }
+    };
     const handleDropdown = (header: string) => {
-        return activeDropdown.includes(header);
+        return activeDropdown === header;
     };
 
-    
+
 
     useEffect(() => {
         if (width < 850) {
@@ -74,7 +82,8 @@ export default function SideBar() {
                         : 'px-2 justify-start mx-4 rounded-lg hover:shadow-sm hover:bg-[#0F6C68]/5'
                         } ${handleDropdown('dashboard') ? 'bg-zinc-200' : ''}`} onClick={() => {
                             setSelectedChannel('dashboard')
-                            handleDropdownToggle('dashboard')
+                            setActiveDropdown('dashboard');
+                            setActiveInnerDropdown('');
                         }}>
                         <div className="flex items-center rounded-lg bg-[#0F6C68]/10 justify-center w-10 h-10">
                             <MdOutlineDashboard className="text-[#0F6C68] text-2xl" />
@@ -102,7 +111,7 @@ export default function SideBar() {
 
                         <div>
                             {sidebarItems.map((section) => (
-                                <Link href={section.pathName} key={section.header} className="group">
+                                <div key={section.header} className="group">
                                     <div
                                         className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
                                             ? 'justify-center px-4'
@@ -136,9 +145,10 @@ export default function SideBar() {
 
                                     {handleDropdown(section.header) && !collapseSidebar && (
                                         <ul className="ml-4 pl-4 border-l border-zinc-200">
-                                            {section.items.map((item) => (
-                                                <li key={item.label} className="mb-2">
-                                                    <div className="group/item">
+                                            {section.items.map((item) => {
+
+                                                return (item.items ? <li key={item.label} className="mb-2">
+                                                    <div className="group/item" onClick={() => { handleInnerDropdownToggle(item.label) }}>
                                                         <div className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
                                                             <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
@@ -148,12 +158,38 @@ export default function SideBar() {
                                                                 <MdKeyboardArrowDown className="ml-auto text-gray-300 group-hover/item:text-[#0F6C68] text-sm transition-colors" />
                                                             )}
                                                         </div>
+                                                        {
+                                                            item.items && activeInnerDropdown.includes(item.label) && (
+                                                                item.items.map((sub, index) => (
+                                                                    <ul className="ml-4 pl-4 border-l border-zinc-200" key={sub.label || index}>
+                                                                        <div className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
+                                                                            <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
+                                                                            <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
+                                                                                {sub.label}
+                                                                            </span>
+                                                                        </div>
+                                                                    </ul>
+                                                                ))
+                                                            )
+                                                        }
                                                     </div>
-                                                </li>
-                                            ))}
+
+                                                </li> : <Link href={section.pathName} key={item.label} className="mb-2">
+                                                    <div className="group/item">
+                                                        <div className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
+                                                            <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
+                                                            <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
+                                                                {item.label}
+                                                            </span>
+
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                                )
+                                            })}
                                         </ul>
                                     )}
-                                </Link>
+                                </div>
                             ))}
                         </div>
                     </div>

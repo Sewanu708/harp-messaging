@@ -1,5 +1,4 @@
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart"
+import { Cell, Pie, PieChart} from "recharts"
 
 interface PieProps {
     data: dataProps[]

@@ -11,6 +11,18 @@ export default function SideBar() {
     const [activeDropdown, setActiveDropdown] = useState<string>('');
     const [activeInnerDropdown, setActiveInnerDropdown] = useState<string>('');
     const [collapseSidebar, setCollapseSidebar] = useState(false);
+    
+    const [width, setWidth] = useState(0);
+    useEffect(() => {
+        setWidth(window.innerWidth);
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     const context = useContext(GlobalContext)
         useEffect(() => {
         if (width < 850) {
@@ -20,9 +32,9 @@ export default function SideBar() {
             setCollapseSidebar(false);
             console.log(width)
         }
-    }, [context?.width])
+    }, [width])
     if (!context) return 'Error, Context is undefined'
-    const { setSelectedChannel, selectedChannel, width } = context
+    const { setSelectedChannel, selectedChannel } = context
     const handleDropdownToggle = (header: string) => {
         if (activeDropdown === header) {
             setActiveDropdown('');

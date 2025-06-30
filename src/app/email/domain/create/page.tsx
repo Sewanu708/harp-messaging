@@ -6,15 +6,15 @@ import { useContext, useState } from "react";
 
 function CreateDomain() {
     const navigate = useRouter();
-    const context = useContext(GlobalContext);
-    if (!context) return 'Error context not defined';
-    const { domainData, setDomainData } = context;
     const [error, setError] = useState({
         domain: 'Input your domain',
         dns: 'Add your DNS Provider',
         region: 'Select your region'
     });
     const [anyError, setAnyError] = useState(false);
+    const context = useContext(GlobalContext);
+    if (!context) return 'Error context not defined';
+    const { domainData, setDomainData } = context;
 
     function handleError(value: string, id: string) {
         if (value.length === 0) setError(prev => ({ ...prev, [id]: 'Empty Field' }));
@@ -153,7 +153,7 @@ function CreateDomain() {
                             className="w-64 border p-2 rounded-md border-[#0F6C68]"
                             onChange={e => {
                                 const value = (e.target as HTMLSelectElement).value;
-                                const id = (e.target as HTMLSelectElement).id;
+
                                 setDomainData({ ...domainData, ip: value });
                             }}
                         >
@@ -171,7 +171,7 @@ function CreateDomain() {
                 </form>
             </div>
 
-            {(anyError &&  (error.domain || error.region || error.dns)) && (
+            {(anyError && (error.domain || error.region || error.dns)) && (
                 <div className="mb-4 p-3 absolute top-32 left-[30%] rounded bg-red-100 text-red-700 text-sm">
                     <ul className="list-disc pl-5">
                         {error.domain && <li>{error.domain}</li>}

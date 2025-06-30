@@ -5,15 +5,24 @@ export const GlobalContext = createContext<GlobalContextType | undefined>(undefi
 interface GlobalContextType {
     selectedChannel: string;
     setSelectedChannel: (value: string) => void,
-
+    domainData: DomainDataProps,
+    setDomainData: (value: DomainDataProps) => void
 };
 
-
+interface DomainDataProps {
+    name: string,
+    region: string,
+    provider: string,
+    ip: string
+}
 function GlobalState({ children }: { children: React.ReactNode }) {
     const [selectedChannel, setSelectedChannel] = useState('');
-   
+    const [domainData, setDomainData] = useState<DomainDataProps>({
+        name: '', region: '', provider: '', ip: ''
+    })
+
     return (
-        <GlobalContext.Provider value={{ selectedChannel, setSelectedChannel, }}>
+        <GlobalContext.Provider value={{ selectedChannel, setSelectedChannel, domainData, setDomainData }}>
             {children}
         </GlobalContext.Provider>
     );

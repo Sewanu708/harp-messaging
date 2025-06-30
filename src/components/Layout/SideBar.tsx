@@ -2,16 +2,17 @@
 import { GlobalContext } from "@/context";
 import { sidebarItems } from "@/data";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import { MdKeyboardArrowDown, MdOutlineDashboard } from "react-icons/md";
 
 export default function SideBar() {
-
+    const pathName = usePathname()
     const [activeDropdown, setActiveDropdown] = useState<string>('');
     const [activeInnerDropdown, setActiveInnerDropdown] = useState<string>('');
     const [collapseSidebar, setCollapseSidebar] = useState(false);
-    
+
     const [width, setWidth] = useState(0);
     useEffect(() => {
         setWidth(window.innerWidth);
@@ -24,24 +25,31 @@ export default function SideBar() {
         };
     }, []);
     const context = useContext(GlobalContext)
-        useEffect(() => {
+    useEffect(() => {
         if (width < 850) {
             setCollapseSidebar(true);
-            console.log(width)
+
         } else {
             setCollapseSidebar(false);
-            console.log(width)
+
         }
     }, [width])
+
+
     if (!context) return 'Error, Context is undefined'
     const { setSelectedChannel, selectedChannel } = context
+    
+    // Fixed dropdown toggle function
     const handleDropdownToggle = (header: string) => {
         if (activeDropdown === header) {
             setActiveDropdown('');
+            // Don't clear selectedChannel here, let it be managed separately
         } else {
-            setActiveDropdown(header)
+            setActiveDropdown(header);
+            setSelectedChannel(header); // Set selectedChannel when opening
         }
     };
+
 
     const handleInnerDropdownToggle = (label: string) => {
         if (activeInnerDropdown === label) {
@@ -50,11 +58,15 @@ export default function SideBar() {
             setActiveInnerDropdown(label);
         }
     };
+    
     const handleDropdown = (header: string) => {
         return activeDropdown === header;
     };
 
-
+    // Helper function to determine if dropdown should be shown
+    const shouldShowDropdown = (header: string) => {
+        return activeDropdown === header && !collapseSidebar;
+    };
 
 
     return (
@@ -93,9 +105,9 @@ export default function SideBar() {
                     <Link href={'/dashboard'} className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
                         ? 'justify-center px-4'
                         : 'px-2 justify-start mx-4 rounded-lg hover:shadow-sm hover:bg-[#0F6C68]/5'
-                        } ${handleDropdown('dashboard') ? 'bg-zinc-200' : ''}`} onClick={() => {
+                        } ${selectedChannel === 'dashboard' ? 'bg-zinc-200' : ''}`} onClick={() => {
                             setSelectedChannel('dashboard')
-                            setActiveDropdown('dashboard');
+                            setActiveDropdown('');
                             setActiveInnerDropdown('');
                         }}>
                         <div className="flex items-center rounded-lg bg-[#0F6C68]/10 justify-center w-10 h-10">
@@ -129,10 +141,9 @@ export default function SideBar() {
                                         className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
                                             ? 'justify-center px-4'
                                             : 'px-2 justify-start mx-4 rounded-lg relative hover:shadow-xl'
-                                            } ${handleDropdown(section.header) ? 'bg-zinc-200' : ''}`}
+                                            } ${selectedChannel === section.header ? 'bg-zinc-200' : ''}`}
                                         onClick={() => {
                                             setCollapseSidebar(false)
-                                            setSelectedChannel(section.pathName)
                                             handleDropdownToggle(section.header)
                                         }}
                                     >
@@ -148,7 +159,7 @@ export default function SideBar() {
                                                     className={`transition-all duration-300 ml-auto text-zinc-500 ${handleDropdown(section.header) ? 'rotate-180' : ''
                                                         }`}
                                                 />
-                                                {selectedChannel === section.pathName && (
+                                                {selectedChannel === section.header && (
                                                     <div className="absolute left-0 w-1 h-8 bg-[#0F6C68] rounded-r-full opacity-100"></div>
                                                 )}
                                             </>
@@ -156,14 +167,17 @@ export default function SideBar() {
 
                                     </div>
 
-                                    {handleDropdown(section.header) && !collapseSidebar && (
+                                    {shouldShowDropdown(section.header) && (
                                         <ul className="ml-4 pl-4 border-l border-zinc-200">
                                             {section.items.map((item) => {
 
                                                 return (item.items ? <li key={item.label} className="mb-2">
-                                                    <div className="group/item" onClick={() => { handleInnerDropdownToggle(item.label) }}>
-                                                        <div className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
-                                                            <div className={`w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors ` }></div>
+                                                    <div className="group/item" onClick={(e) => { 
+                                                        e.stopPropagation();
+                                                        handleInnerDropdownToggle(item.label) 
+                                                    }}>
+                                                        <div className={`flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative `}>
+                                                            <div className={`w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors `}></div>
                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
                                                                 {item.label}
                                                             </span>
@@ -175,7 +189,7 @@ export default function SideBar() {
                                                             item.items && activeInnerDropdown.includes(item.label) && (
                                                                 item.items.map((sub, index) => (
                                                                     <div className="ml-4 pl-4 border-l border-zinc-200" key={sub.label || index}>
-                                                                        <Link href={sub.path} className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
+                                                                        <Link href={sub.path} className={`flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative ${(pathName===sub.path)? 'bg-[#0F6C68]/5 ' :''}` } onClick={(e) => e.stopPropagation()}>
                                                                             <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
                                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
                                                                                 {sub.label}
@@ -189,7 +203,7 @@ export default function SideBar() {
 
                                                 </li> : <Link href={item.path} key={item.label} className="mb-2">
                                                     <div className="group/item">
-                                                        <div className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
+                                                        <div className={`flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative ${(pathName===item.path)? 'bg-[#0F6C68]/5 ' :''}` }>
                                                             <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
                                                                 {item.label}

@@ -5,14 +5,13 @@ export const GlobalContext = createContext<GlobalContextType | undefined>(undefi
 interface GlobalContextType {
     selectedChannel: string;
     setSelectedChannel: (value: string) => void,
-    
+
 };
 
 
 function GlobalState({ children }: { children: React.ReactNode }) {
     const [selectedChannel, setSelectedChannel] = useState('');
-    
-
+   
     return (
         <GlobalContext.Provider value={{ selectedChannel, setSelectedChannel, }}>
             {children}

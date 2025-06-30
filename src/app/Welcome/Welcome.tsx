@@ -1,41 +1,11 @@
 'use client'
 import { BiDownArrowCircle } from "react-icons/bi";
-import { MdOutlineNotifications } from "react-icons/md";
-import { FiMail } from "react-icons/fi";
-import { RiMessage2Line } from "react-icons/ri";
-import { BsWhatsapp } from "react-icons/bs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useContext } from "react";
 import { GlobalContext } from "@/context";
-
-const items = [
-    {
-        header: "Email",
-        icon: FiMail,
-        description: "Send beautiful transactional emails",
-        path: '/email'
-    },
-    {
-        header: "SMS",
-        icon: RiMessage2Line,
-        description: "Reach users with instant text alerts",
-        path: '/message'
-    },
-    {
-        header: "WhatsApp",
-        icon: BsWhatsapp,
-        description: "Engage via personalized messages",
-        path: '/whatsapp'
-    },
-    {
-        header: "Push Notification",
-        icon: MdOutlineNotifications,
-        description: "Trigger in-app or browser pushes",
-        path: '/notification'
-    },
-];
+import { sidebarItems } from "@/data";
 
 export default function Welcome() {
     const context = useContext(GlobalContext)
@@ -56,8 +26,8 @@ export default function Welcome() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl px-4">
-                {items.map((item, index) => (
-                    <Link href={item.path} onClick={() => setSelectedChannel(item.header)} key={index}>
+                {sidebarItems.map((item, index) => (
+                    <Link href={item.pathName} onClick={() => setSelectedChannel(item.header)} key={index}>
                         <Card
 
                             className="hover:shadow-md transition-shadow  cursor-pointer shadow-xl  duration-300 bg-white rounded-2xl"

@@ -10,7 +10,7 @@ interface GlobalContextType {
 };
 
 interface DomainDataProps {
-    name: string,
+    domain: string,
     region: string,
     provider: string,
     ip: string
@@ -18,7 +18,7 @@ interface DomainDataProps {
 function GlobalState({ children }: { children: React.ReactNode }) {
     const [selectedChannel, setSelectedChannel] = useState('');
     const [domainData, setDomainData] = useState<DomainDataProps>({
-        name: '', region: '', provider: '', ip: ''
+        domain: '', region: '', provider: '', ip: ''
     })
 
     return (

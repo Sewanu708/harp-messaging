@@ -1,7 +1,7 @@
 'use client'
 import AddDomainPopup from "@/components/AddDomainPopup"
 import { Button } from "@/components/ui/button"
-import { BoldIcon, Heading1Icon, Heading2Icon, Image, ItalicIcon, Link2Icon, ListOrdered, SendIcon } from "lucide-react"
+import { BoldIcon, Heading1Icon, Heading2Icon, ImageIcon, ItalicIcon, Link2Icon, ListOrdered, SendIcon } from "lucide-react"
 import { useState } from "react";
 import { LuLayoutTemplate } from "react-icons/lu";
 import { MdClose, MdDomain } from "react-icons/md"
@@ -76,7 +76,7 @@ function Email() {
                             <Link2Icon />
                         </Button>
                         <Button variant={"outline"} className="ml-2" disabled={selectedDomain.length === 0}>
-                            <Image />
+                            <ImageIcon />
                         </Button>
                         <Button variant={"outline"} className="ml-2" disabled={selectedDomain.length === 0}>
                             <ListOrdered />

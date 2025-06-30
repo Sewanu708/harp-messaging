@@ -1,5 +1,4 @@
 import { SearchIcon } from "lucide-react";
-import Table from "./Table"
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 

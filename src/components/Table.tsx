@@ -35,11 +35,11 @@ function Table({ headers, data }: TableProps) {
                         const formatted = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
                         return (
                             <tr key={item.timestamp} className="bg-white border-b hover:bg-zinc-50 transition">
-                                <td className="px-6 py-4">{formatted}</td>
-                                <td className="px-6 py-4">{item.recipient}</td>
-                                <td className="px-6 py-4">{item.subject}</td>
-                                <td className="px-6 py-4 w-16">{item.status}</td>
-                                <td className="px-6 py-4 w-48">{item.response_code}</td>
+                                <td className="px-4 py-2 text-sm truncate max-w-64">{formatted}</td>
+                                <td className="px-4 py-2 text-sm truncate max-w-64">{item.recipient}</td>
+                                <td className="px-4 py-2 text-sm truncate max-w-64">{item.subject}</td>
+                                <td className="px-4 py-2 text-sm truncate max-w-32">{item.status}</td>
+                                <td className="px-4 py-2 text-sm truncate max-w-32">{item.response_code}</td>
                             </tr>)
 
                     })}

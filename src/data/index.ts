@@ -19,7 +19,7 @@ export const sidebarItems = [
       {
 
         label: "View Mails",
-        path: "/email/list"
+        path: "/email/viewmails"
       },
       {
         label: "Domains",
@@ -27,7 +27,11 @@ export const sidebarItems = [
         items: [
           {
             label: "Manage Domains",
-            path: "/email/domains"
+            path: "/email/domain/manage"
+          }
+          ,{
+            label: "Add Domain",
+            path: "/email/domain/create"
           }
         ]
       },
@@ -46,12 +50,12 @@ export const sidebarItems = [
         id: randomId(),
         items: [
           {
-            label: "Email Templates",
+            label: "Create Templates",
             path: "/email/templates"
           },
           {
-            label: "Send with Template",
-            path: "/email/template-send"
+            label: "View Template",
+            path: "/email/template-view"
           }
         ]
       },
@@ -74,28 +78,9 @@ export const sidebarItems = [
     items: [
       {
         label: "Send SMS",
-        path: "/sms/send"
+        path: "/sms"
       },
-      {
-        label: "Templates",
-        id: randomId(),
-        items: [
-          {
-            label: "SMS Templates",
-            path: "/sms/templates"
-          }
-        ]
-      },
-      {
-        label: "Webhooks",
-        id: randomId(),
-        items: [
-          {
-            label: "Manage Webhooks",
-            path: "/sms/webhooks"
-          }
-        ]
-      }
+      
     ]
   },
   {
@@ -105,28 +90,9 @@ export const sidebarItems = [
     items: [
       {
         label: "Send WhatsApp",
-        path: "/whatsapp/send"
+        path: "/whatsapp"
       },
-      {
-        label: "Templates",
-        id: randomId(),
-        items: [
-          {
-            label: "WhatsApp Templates",
-            path: "/whatsapp/templates"
-          }
-        ]
-      },
-      {
-        label: "Webhooks",
-        id: randomId(),
-        items: [
-          {
-            label: "Manage Webhooks",
-            path: "/whatsapp/webhooks"
-          }
-        ]
-      }
+      
     ]
   },
   {
@@ -136,27 +102,7 @@ export const sidebarItems = [
     items: [
       {
         label: "Send Notification",
-        path: "/push/send"
-      },
-      {
-        label: "Templates",
-        id: randomId(),
-        items: [
-          {
-            label: "Notification Templates",
-            path: "/push/templates"
-          }
-        ]
-      },
-      {
-        label: "Webhooks",
-        id: randomId(),
-        items: [
-          {
-            label: "Manage Webhooks",
-            path: "/push/webhooks"
-          }
-        ]
+        path: "/notification"
       }
     ]
   }
@@ -244,3 +190,455 @@ export const emailData = [
     "geo_location": "Mexico"
   }
 ]
+
+export const newEmailData = [
+  {
+    subject: "Welcome to Harp Messaging!",
+    recipient: "jane.doe@example.com",
+    sender: "noreply@harp.io",
+    status: "Sent",
+    type: "Welcome Email",
+    environment: "Production",
+    sentAt: "2025-06-28 10:05",
+    opened: true,
+    clicked: false,
+    messageId: "msg_001",
+    domain: "harp.io",
+  },
+  {
+    subject: "Password Reset Request",
+    recipient: "john.smith@mail.com",
+    sender: "support@harp.io",
+    status: "Opened",
+    type: "Password Reset",
+    environment: "Production",
+    sentAt: "2025-06-28 09:45",
+    opened: true,
+    clicked: true,
+    messageId: "msg_002",
+    domain: "harp.io",
+  },
+  {
+    subject: "Verify Your Email Address",
+    recipient: "user123@clientmail.com",
+    sender: "noreply@harp.io",
+    status: "Bounced",
+    type: "Verification",
+    environment: "Staging",
+    sentAt: "2025-06-27 18:20",
+    opened: false,
+    clicked: false,
+    messageId: "msg_003",
+    domain: "sandbox.harpmail.org",
+  },
+  {
+    subject: "Invoice #45678",
+    recipient: "billing@company.org",
+    sender: "billing@harp.io",
+    status: "Sent",
+    type: "Invoice",
+    environment: "Production",
+    sentAt: "2025-06-26 14:00",
+    opened: true,
+    clicked: true,
+    messageId: "msg_004",
+    domain: "harp.io",
+  },
+  {
+    subject: "Important System Notification",
+    recipient: "admin@company.org",
+    sender: "alerts@harp.io",
+    status: "Failed",
+    type: "System Alert",
+    environment: "Production",
+    sentAt: "2025-06-25 22:50",
+    opened: false,
+    clicked: false,
+    messageId: "msg_005",
+    domain: "harp.io",
+  },{
+    subject: "Welcome to Harp Messaging!",
+    recipient: "jane.doe@example.com",
+    sender: "noreply@harp.io",
+    status: "Sent",
+    type: "Welcome Email",
+    environment: "Production",
+    sentAt: "2025-06-28 10:05",
+    opened: true,
+    clicked: false,
+    messageId: "msg_001",
+    domain: "harp.io",
+  },
+  {
+    subject: "Password Reset Request",
+    recipient: "john.smith@mail.com",
+    sender: "support@harp.io",
+    status: "Opened",
+    type: "Password Reset",
+    environment: "Production",
+    sentAt: "2025-06-28 09:45",
+    opened: true,
+    clicked: true,
+    messageId: "msg_002",
+    domain: "harp.io",
+  },
+  {
+    subject: "Verify Your Email Address",
+    recipient: "user123@clientmail.com",
+    sender: "noreply@harp.io",
+    status: "Bounced",
+    type: "Verification",
+    environment: "Staging",
+    sentAt: "2025-06-27 18:20",
+    opened: false,
+    clicked: false,
+    messageId: "msg_003",
+    domain: "sandbox.harpmail.org",
+  },
+  {
+    subject: "Invoice #45678",
+    recipient: "billing@company.org",
+    sender: "billing@harp.io",
+    status: "Sent",
+    type: "Invoice",
+    environment: "Production",
+    sentAt: "2025-06-26 14:00",
+    opened: true,
+    clicked: true,
+    messageId: "msg_004",
+    domain: "harp.io",
+  },
+  {
+    subject: "Important System Notification",
+    recipient: "admin@company.org",
+    sender: "alerts@harp.io",
+    status: "Failed",
+    type: "System Alert",
+    environment: "Production",
+    sentAt: "2025-06-25 22:50",
+    opened: false,
+    clicked: false,
+    messageId: "msg_005",
+    domain: "harp.io",
+  },{
+    subject: "Welcome to Harp Messaging!",
+    recipient: "jane.doe@example.com",
+    sender: "noreply@harp.io",
+    status: "Sent",
+    type: "Welcome Email",
+    environment: "Production",
+    sentAt: "2025-06-28 10:05",
+    opened: true,
+    clicked: false,
+    messageId: "msg_001",
+    domain: "harp.io",
+  },
+  {
+    subject: "Password Reset Request",
+    recipient: "john.smith@mail.com",
+    sender: "support@harp.io",
+    status: "Opened",
+    type: "Password Reset",
+    environment: "Production",
+    sentAt: "2025-06-28 09:45",
+    opened: true,
+    clicked: true,
+    messageId: "msg_002",
+    domain: "harp.io",
+  },
+  {
+    subject: "Verify Your Email Address",
+    recipient: "user123@clientmail.com",
+    sender: "noreply@harp.io",
+    status: "Bounced",
+    type: "Verification",
+    environment: "Staging",
+    sentAt: "2025-06-27 18:20",
+    opened: false,
+    clicked: false,
+    messageId: "msg_003",
+    domain: "sandbox.harpmail.org",
+  },
+  {
+    subject: "Invoice #45678",
+    recipient: "billing@company.org",
+    sender: "billing@harp.io",
+    status: "Sent",
+    type: "Invoice",
+    environment: "Production",
+    sentAt: "2025-06-26 14:00",
+    opened: true,
+    clicked: true,
+    messageId: "msg_004",
+    domain: "harp.io",
+  },
+  {
+    subject: "Important System Notification",
+    recipient: "admin@company.org",
+    sender: "alerts@harp.io",
+    status: "Failed",
+    type: "System Alert",
+    environment: "Production",
+    sentAt: "2025-06-25 22:50",
+    opened: false,
+    clicked: false,
+    messageId: "msg_005",
+    domain: "harp.io",
+  },{
+    subject: "Welcome to Harp Messaging!",
+    recipient: "jane.doe@example.com",
+    sender: "noreply@harp.io",
+    status: "Sent",
+    type: "Welcome Email",
+    environment: "Production",
+    sentAt: "2025-06-28 10:05",
+    opened: true,
+    clicked: false,
+    messageId: "msg_001",
+    domain: "harp.io",
+  },
+  {
+    subject: "Password Reset Request",
+    recipient: "john.smith@mail.com",
+    sender: "support@harp.io",
+    status: "Opened",
+    type: "Password Reset",
+    environment: "Production",
+    sentAt: "2025-06-28 09:45",
+    opened: true,
+    clicked: true,
+    messageId: "msg_002",
+    domain: "harp.io",
+  },
+  {
+    subject: "Verify Your Email Address",
+    recipient: "user123@clientmail.com",
+    sender: "noreply@harp.io",
+    status: "Bounced",
+    type: "Verification",
+    environment: "Staging",
+    sentAt: "2025-06-27 18:20",
+    opened: false,
+    clicked: false,
+    messageId: "msg_003",
+    domain: "sandbox.harpmail.org",
+  },
+  {
+    subject: "Invoice #45678",
+    recipient: "billing@company.org",
+    sender: "billing@harp.io",
+    status: "Sent",
+    type: "Invoice",
+    environment: "Production",
+    sentAt: "2025-06-26 14:00",
+    opened: true,
+    clicked: true,
+    messageId: "msg_004",
+    domain: "harp.io",
+  },
+  {
+    subject: "Important System Notification",
+    recipient: "admin@company.org",
+    sender: "alerts@harp.io",
+    status: "Failed",
+    type: "System Alert",
+    environment: "Production",
+    sentAt: "2025-06-25 22:50",
+    opened: false,
+    clicked: false,
+    messageId: "msg_005",
+    domain: "harp.io",
+  },{
+    subject: "Welcome to Harp Messaging!",
+    recipient: "jane.doe@example.com",
+    sender: "noreply@harp.io",
+    status: "Sent",
+    type: "Welcome Email",
+    environment: "Production",
+    sentAt: "2025-06-28 10:05",
+    opened: true,
+    clicked: false,
+    messageId: "msg_001",
+    domain: "harp.io",
+  },
+  {
+    subject: "Password Reset Request",
+    recipient: "john.smith@mail.com",
+    sender: "support@harp.io",
+    status: "Opened",
+    type: "Password Reset",
+    environment: "Production",
+    sentAt: "2025-06-28 09:45",
+    opened: true,
+    clicked: true,
+    messageId: "msg_002",
+    domain: "harp.io",
+  },
+  {
+    subject: "Verify Your Email Address",
+    recipient: "user123@clientmail.com",
+    sender: "noreply@harp.io",
+    status: "Bounced",
+    type: "Verification",
+    environment: "Staging",
+    sentAt: "2025-06-27 18:20",
+    opened: false,
+    clicked: false,
+    messageId: "msg_003",
+    domain: "sandbox.harpmail.org",
+  },
+  {
+    subject: "Invoice #45678",
+    recipient: "billing@company.org",
+    sender: "billing@harp.io",
+    status: "Sent",
+    type: "Invoice",
+    environment: "Production",
+    sentAt: "2025-06-26 14:00",
+    opened: true,
+    clicked: true,
+    messageId: "msg_004",
+    domain: "harp.io",
+  },
+  {
+    subject: "Important System Notification",
+    recipient: "admin@company.org",
+    sender: "alerts@harp.io",
+    status: "Failed",
+    type: "System Alert",
+    environment: "Production",
+    sentAt: "2025-06-25 22:50",
+    opened: false,
+    clicked: false,
+    messageId: "msg_005",
+    domain: "harp.io",
+  },{
+    subject: "Welcome to Harp Messaging!",
+    recipient: "jane.doe@example.com",
+    sender: "noreply@harp.io",
+    status: "Sent",
+    type: "Welcome Email",
+    environment: "Production",
+    sentAt: "2025-06-28 10:05",
+    opened: true,
+    clicked: false,
+    messageId: "msg_001",
+    domain: "harp.io",
+  },
+  {
+    subject: "Password Reset Request",
+    recipient: "john.smith@mail.com",
+    sender: "support@harp.io",
+    status: "Opened",
+    type: "Password Reset",
+    environment: "Production",
+    sentAt: "2025-06-28 09:45",
+    opened: true,
+    clicked: true,
+    messageId: "msg_002",
+    domain: "harp.io",
+  },
+  {
+    subject: "Verify Your Email Address",
+    recipient: "user123@clientmail.com",
+    sender: "noreply@harp.io",
+    status: "Bounced",
+    type: "Verification",
+    environment: "Staging",
+    sentAt: "2025-06-27 18:20",
+    opened: false,
+    clicked: false,
+    messageId: "msg_003",
+    domain: "sandbox.harpmail.org",
+  },
+  {
+    subject: "Invoice #45678",
+    recipient: "billing@company.org",
+    sender: "billing@harp.io",
+    status: "Sent",
+    type: "Invoice",
+    environment: "Production",
+    sentAt: "2025-06-26 14:00",
+    opened: true,
+    clicked: true,
+    messageId: "msg_004",
+    domain: "harp.io",
+  },
+  {
+    subject: "Important System Notification",
+    recipient: "admin@company.org",
+    sender: "alerts@harp.io",
+    status: "Failed",
+    type: "System Alert",
+    environment: "Production",
+    sentAt: "2025-06-25 22:50",
+    opened: false,
+    clicked: false,
+    messageId: "msg_005",
+    domain: "harp.io",
+  },{
+    subject: "Welcome to Harp Messaging!",
+    recipient: "jane.doe@example.com",
+    sender: "noreply@harp.io",
+    status: "Sent",
+    type: "Welcome Email",
+    environment: "Production",
+    sentAt: "2025-06-28 10:05",
+    opened: true,
+    clicked: false,
+    messageId: "msg_001",
+    domain: "harp.io",
+  },
+  {
+    subject: "Password Reset Request",
+    recipient: "john.smith@mail.com",
+    sender: "support@harp.io",
+    status: "Opened",
+    type: "Password Reset",
+    environment: "Production",
+    sentAt: "2025-06-28 09:45",
+    opened: true,
+    clicked: true,
+    messageId: "msg_002",
+    domain: "harp.io",
+  },
+  {
+    subject: "Verify Your Email Address",
+    recipient: "user123@clientmail.com",
+    sender: "noreply@harp.io",
+    status: "Bounced",
+    type: "Verification",
+    environment: "Staging",
+    sentAt: "2025-06-27 18:20",
+    opened: false,
+    clicked: false,
+    messageId: "msg_003",
+    domain: "sandbox.harpmail.org",
+  },
+  {
+    subject: "Invoice #45678",
+    recipient: "billing@company.org",
+    sender: "billing@harp.io",
+    status: "Sent",
+    type: "Invoice",
+    environment: "Production",
+    sentAt: "2025-06-26 14:00",
+    opened: true,
+    clicked: true,
+    messageId: "msg_004",
+    domain: "harp.io",
+  },
+  {
+    subject: "Important System Notification",
+    recipient: "admin@company.org",
+    sender: "alerts@harp.io",
+    status: "Failed",
+    type: "System Alert",
+    environment: "Production",
+    sentAt: "2025-06-25 22:50",
+    opened: false,
+    clicked: false,
+    messageId: "msg_005",
+    domain: "harp.io",
+  },
+];

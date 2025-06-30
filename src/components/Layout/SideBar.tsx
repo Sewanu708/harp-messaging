@@ -163,7 +163,7 @@ export default function SideBar() {
                                                 return (item.items ? <li key={item.label} className="mb-2">
                                                     <div className="group/item" onClick={() => { handleInnerDropdownToggle(item.label) }}>
                                                         <div className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
-                                                            <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
+                                                            <div className={`w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors ` }></div>
                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
                                                                 {item.label}
                                                             </span>
@@ -174,20 +174,20 @@ export default function SideBar() {
                                                         {
                                                             item.items && activeInnerDropdown.includes(item.label) && (
                                                                 item.items.map((sub, index) => (
-                                                                    <ul className="ml-4 pl-4 border-l border-zinc-200" key={sub.label || index}>
-                                                                        <div className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
+                                                                    <div className="ml-4 pl-4 border-l border-zinc-200" key={sub.label || index}>
+                                                                        <Link href={sub.path} className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
                                                                             <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
                                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
                                                                                 {sub.label}
                                                                             </span>
-                                                                        </div>
-                                                                    </ul>
+                                                                        </Link>
+                                                                    </div>
                                                                 ))
                                                             )
                                                         }
                                                     </div>
 
-                                                </li> : <Link href={section.pathName} key={item.label} className="mb-2">
+                                                </li> : <Link href={item.path} key={item.label} className="mb-2">
                                                     <div className="group/item">
                                                         <div className="flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative">
                                                             <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>

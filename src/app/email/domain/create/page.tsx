@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button"
 import { GlobalContext } from "@/context";
 import { domainTableData } from "@/data";
-import { Verified } from "lucide-react";
 import { useRouter } from "next/navigation"
 import { useContext, useState } from "react";
 
@@ -56,12 +55,12 @@ function CreateDomain() {
 
         const formatted = `${year}-${day}-${month}  ${hour}:${minutes}:${seconds}`
         const data = {
-            domain: domainData.domain, verified: 'pending', spf: 'fail', dkim: 'fail', addedOn: formatted, lastUsed: 'N/A', actions: ['Edit', 'Logs']
+            id: new Date().getTime() + Math.random().toString(36).substring(2, 9), domain: domainData.domain, verified: 'pending', spf: 'fail', dkim: 'fail', addedOn: formatted, lastUsed: 'N/A', actions: ['Edit', 'Logs']
 
         }
         domainTableData.push(data)
     }
-    
+
     return (
         <section className="py-4 px-4 w-full relative h-screen overflow-y-auto">
             <div className="text-2xl py-2 w-full bg-white fixed font-semibold text-[#0F6C68]">

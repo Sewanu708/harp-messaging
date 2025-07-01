@@ -82,7 +82,7 @@ function View() {
 
             </div>
             <GetMailbyId input={filterInput} setInput={setFilterInput} placeholder="search with id" />
-            <Table input={filterInput} columns={columns} data={data} maxRow={9} handleSorting={handleSorting} sortDisplay={true} />
+            <Table  columns={columns} data={data} maxRow={9} handleSorting={handleSorting} sortDisplay={true} />
 
             <div className="w-full flex items-center justify-between mt-4">
                 <Button disabled>

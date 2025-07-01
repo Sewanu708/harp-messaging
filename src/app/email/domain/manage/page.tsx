@@ -26,7 +26,7 @@ function Manage() {
         { header: 'DKIM', accessor: 'dkim' },
         { header: 'Added on', accessor: 'addedOn' },
         { header: 'Last Used', accessor: 'lastUsed' },
-        { header: '', accessor: 'actions', render: (value) => <BiDotsHorizontalRounded /> }
+        { header: '', accessor: 'actions', render: () => <BiDotsHorizontalRounded /> }
     ];
     useEffect(() => {
         if (filterInput.length > 0) {
@@ -54,7 +54,7 @@ function Manage() {
 
             <div className="mt-6" />
             <GetMailbyId input={filterInput} setInput={setFilterInput} placeholder={'Search with id'} />
-            <Table input={filterInput} columns={columns} data={data} maxRow={9} sortDisplay={false} />
+            <Table columns={columns} data={data} maxRow={9} sortDisplay={false} />
 
             <div className="w-full flex items-center justify-between mt-4">
                 <Button disabled>

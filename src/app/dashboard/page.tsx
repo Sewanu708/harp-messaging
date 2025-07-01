@@ -8,7 +8,6 @@ import Barchart from "@/components/Dashboard/BarChart";
 import { dataProps, newEmailData } from "@/data";
 import Piechart from "@/components/Dashboard/PieChart";
 import Table from "../email/viewmails/table";
-import { useState } from "react";
 const kpiData = [
     {
         number: 1200,
@@ -64,8 +63,7 @@ const columns: ColumnProps<dataProps>[] = [
     { header: 'Sent At', accessor: 'sentAt' }
 ];
 function Page() {
-    const [filterInput, setFilterInput] = useState('')
-    const [data, setData] = useState(newEmailData);
+ 
    
     return (
         <section className=" py-4 px-4 w-full h-screen overflow-y-auto">
@@ -112,7 +110,7 @@ function Page() {
                 <div className="p-4 bg-white text-[#0F6C68] font-semibold text-lg rounded-t-md shadow-sm border-b border-zinc-200 mb-2">
                     Recent Activity
                 </div>
-                <Table input={filterInput} columns={columns} data={data} maxRow={5} sortDisplay={false} />
+                <Table columns={columns} data={newEmailData} maxRow={5} sortDisplay={false} />
             </div>
 
 

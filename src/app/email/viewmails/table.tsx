@@ -9,7 +9,6 @@ interface ColumnProps<T> {
 }
 
 interface TableProps<T> {
-    input: string,
     data: T[],
     columns: ColumnProps<T>[],
     maxRow?: number,
@@ -17,7 +16,7 @@ interface TableProps<T> {
     handleSorting?: (accessor: string, sortOrder: string) => () => void
 }
 
-function Table<T>({ input, columns, data, maxRow, handleSorting ,sortDisplay}: TableProps<T>) {
+function Table<T>({  columns, data, maxRow, handleSorting ,sortDisplay}: TableProps<T>) {
     const [sortField, setSortField] = useState('');
     const [order, setOrder] = useState('asc');
 

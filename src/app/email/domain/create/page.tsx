@@ -1,6 +1,8 @@
 'use client'
 import { Button } from "@/components/ui/button"
 import { GlobalContext } from "@/context";
+import { domainTableData } from "@/data";
+import { Verified } from "lucide-react";
 import { useRouter } from "next/navigation"
 import { useContext, useState } from "react";
 
@@ -42,7 +44,24 @@ function CreateDomain() {
             setError(prev => ({ ...prev, dns: '' }));
         }
     }
+    function postData() {
 
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0')
+        const day = (date.getDay()).toString().padStart(2, '0')
+        const hour = (date.getHours()).toString().padStart(2, '0')
+        const minutes = (date.getMinutes()).toString().padStart(2, '0')
+        const seconds = (date.getSeconds()).toString().padStart(2, '0')
+
+        const formatted = `${year}-${day}-${month}  ${hour}:${minutes}:${seconds}`
+        const data = {
+            domain: domainData.domain, verified: 'pending', spf: 'fail', dkim: 'fail', addedOn: formatted, lastUsed: 'N/A', actions: ['Edit', 'Logs']
+
+        }
+        domainTableData.push(data)
+    }
+    
     return (
         <section className="py-4 px-4 w-full relative h-screen overflow-y-auto">
             <div className="text-2xl py-2 w-full bg-white fixed font-semibold text-[#0F6C68]">
@@ -67,6 +86,8 @@ function CreateDomain() {
                             setAnyError(true);
                             return;
                         }
+
+                        postData()
                         navigate.push('/email/domain/dns');
                     }}
                 >

@@ -30,7 +30,7 @@ export const sidebarItems = [
             label: "Manage Domains",
             path: "/email/domain/manage"
           }
-          ,{
+          , {
             label: "Add Domain",
             path: "/email/domain/create"
           }
@@ -82,7 +82,7 @@ export const sidebarItems = [
         label: "Send SMS",
         path: "/message"
       },
-      
+
     ]
   },
   {
@@ -95,7 +95,7 @@ export const sidebarItems = [
         label: "Send WhatsApp",
         path: "/whatsapp"
       },
-      
+
     ]
   },
   {
@@ -112,91 +112,73 @@ export const sidebarItems = [
   }
 ];
 
-export const emailData = [
-  {
-    "message_id": "msg_1001",
-    "timestamp": "2025-06-28T10:14:22Z",
-    "recipient": "jane.doe@example.com",
-    "sender": "no-reply@yourapp.com",
-    "subject": "Welcome to Our Service",
-    "template_used": "welcome_email",
-    "status": "Delivered",
-    "delivery_time_ms": 320,
-    "ip_address": "198.51.100.23",
-    "tags": ["welcome", "user"],
-    "response_code": "250 ",
-    "error_message": null,
-    "user_agent": "Mozilla/5.0 (Windows NT 10.0)",
-    "geo_location": "USA"
-  },
-  {
-    "message_id": "msg_1002",
-    "timestamp": "2025-06-28T10:16:40Z",
-    "recipient": "john.smith@example.net",
-    "sender": "support@yourapp.com",
-    "subject": "Reset Your Password",
-    "template_used": "password_reset",
-    "status": "Soft Bounce",
-    "delivery_time_ms": null,
-    "ip_address": "203.0.113.5",
-    "tags": ["security", "password"],
-    "response_code": "450 ",
-    "error_message": "Mailbox temporarily unavailable",
-    "user_agent": null,
-    "geo_location": "UK"
-  },
-  {
-    "message_id": "msg_1003",
-    "timestamp": "2025-06-28T10:18:10Z",
-    "recipient": "sally.green@example.org",
-    "sender": "billing@yourapp.com",
-    "subject": "Your Invoice #INV-202506",
-    "template_used": "invoice_email",
-    "status": "Delivered",
-    "delivery_time_ms": 415,
-    "ip_address": "203.0.113.18",
-    "tags": ["billing", "invoice"],
-    "response_code": "250",
-    "error_message": null,
-    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X)",
-    "geo_location": "Canada"
-  },
-  {
-    "message_id": "msg_1004",
-    "timestamp": "2025-06-28T10:19:55Z",
-    "recipient": "invaliduser@nonexistent.com",
-    "sender": "no-reply@yourapp.com",
-    "subject": "Confirm Your Email",
-    "template_used": "email_confirmation",
-    "status": "Hard Bounce",
-    "delivery_time_ms": null,
-    "ip_address": "192.0.2.45",
-    "tags": ["auth", "confirm"],
-    "response_code": "550",
-    "error_message": "User does not exist",
-    "user_agent": null,
-    "geo_location": "Nigeria"
-  },
-  {
-    "message_id": "msg_1005",
-    "timestamp": "2025-06-28T10:21:05Z",
-    "recipient": "alex.perez@example.com",
-    "sender": "no-reply@yourapp.com",
-    "subject": "Security Alert: New Login",
-    "template_used": "security_alert",
-    "status": "Delivered",
-    "delivery_time_ms": 288,
-    "ip_address": "198.51.100.78",
-    "tags": ["security"],
-    "response_code": "250 ",
-    "error_message": null,
-    "user_agent": "Mozilla/5.0 (Android 10)",
-    "geo_location": "Mexico"
-  }
-]
 
+export interface dataProps {
+  subject: string,
+  recipient: string,
+  sender: string,
+  status: string,
+  type: string,
+  environment: string,
+  sentAt: string,
+  opened: boolean,
+  clicked: boolean,
+  messageId: string,
+  domain: string,
+}
 export const newEmailData = [
   {
+    subject: "Password Reset Request",
+    recipient: "john.smith@mail.com",
+    sender: "support@harp.io",
+    status: "Opened",
+    type: "Password Reset",
+    environment: "Production",
+    sentAt: "2025-06-28 09:45",
+    opened: true,
+    clicked: true,
+    messageId: "msg_002",
+    domain: "harp.io",
+  },
+  {
+    subject: "Verify Your Email Address",
+    recipient: "user123@clientmail.com",
+    sender: "noreply@harp.io",
+    status: "Bounced",
+    type: "Verification",
+    environment: "Staging",
+    sentAt: "2025-06-27 18:20",
+    opened: false,
+    clicked: false,
+    messageId: "msg_003",
+    domain: "sandbox.harpmail.org",
+  },
+  {
+    subject: "Invoice #45678",
+    recipient: "billing@company.org",
+    sender: "billing@harp.io",
+    status: "Sent",
+    type: "Invoice",
+    environment: "Production",
+    sentAt: "2025-06-26 14:00",
+    opened: true,
+    clicked: true,
+    messageId: "msg_004",
+    domain: "harp.io",
+  },
+  {
+    subject: "Important System Notification",
+    recipient: "admin@company.org",
+    sender: "alerts@harp.io",
+    status: "Failed",
+    type: "System Alert",
+    environment: "Production",
+    sentAt: "2025-06-25 22:50",
+    opened: false,
+    clicked: false,
+    messageId: "msg_005",
+    domain: "harp.io",
+  }, {
     subject: "Welcome to Harp Messaging!",
     recipient: "jane.doe@example.com",
     sender: "noreply@harp.io",
@@ -260,7 +242,7 @@ export const newEmailData = [
     clicked: false,
     messageId: "msg_005",
     domain: "harp.io",
-  },{
+  }, {
     subject: "Welcome to Harp Messaging!",
     recipient: "jane.doe@example.com",
     sender: "noreply@harp.io",
@@ -324,7 +306,7 @@ export const newEmailData = [
     clicked: false,
     messageId: "msg_005",
     domain: "harp.io",
-  },{
+  }, {
     subject: "Welcome to Harp Messaging!",
     recipient: "jane.doe@example.com",
     sender: "noreply@harp.io",
@@ -388,7 +370,7 @@ export const newEmailData = [
     clicked: false,
     messageId: "msg_005",
     domain: "harp.io",
-  },{
+  }, {
     subject: "Welcome to Harp Messaging!",
     recipient: "jane.doe@example.com",
     sender: "noreply@harp.io",
@@ -452,135 +434,7 @@ export const newEmailData = [
     clicked: false,
     messageId: "msg_005",
     domain: "harp.io",
-  },{
-    subject: "Welcome to Harp Messaging!",
-    recipient: "jane.doe@example.com",
-    sender: "noreply@harp.io",
-    status: "Sent",
-    type: "Welcome Email",
-    environment: "Production",
-    sentAt: "2025-06-28 10:05",
-    opened: true,
-    clicked: false,
-    messageId: "msg_001",
-    domain: "harp.io",
-  },
-  {
-    subject: "Password Reset Request",
-    recipient: "john.smith@mail.com",
-    sender: "support@harp.io",
-    status: "Opened",
-    type: "Password Reset",
-    environment: "Production",
-    sentAt: "2025-06-28 09:45",
-    opened: true,
-    clicked: true,
-    messageId: "msg_002",
-    domain: "harp.io",
-  },
-  {
-    subject: "Verify Your Email Address",
-    recipient: "user123@clientmail.com",
-    sender: "noreply@harp.io",
-    status: "Bounced",
-    type: "Verification",
-    environment: "Staging",
-    sentAt: "2025-06-27 18:20",
-    opened: false,
-    clicked: false,
-    messageId: "msg_003",
-    domain: "sandbox.harpmail.org",
-  },
-  {
-    subject: "Invoice #45678",
-    recipient: "billing@company.org",
-    sender: "billing@harp.io",
-    status: "Sent",
-    type: "Invoice",
-    environment: "Production",
-    sentAt: "2025-06-26 14:00",
-    opened: true,
-    clicked: true,
-    messageId: "msg_004",
-    domain: "harp.io",
-  },
-  {
-    subject: "Important System Notification",
-    recipient: "admin@company.org",
-    sender: "alerts@harp.io",
-    status: "Failed",
-    type: "System Alert",
-    environment: "Production",
-    sentAt: "2025-06-25 22:50",
-    opened: false,
-    clicked: false,
-    messageId: "msg_005",
-    domain: "harp.io",
-  },{
-    subject: "Welcome to Harp Messaging!",
-    recipient: "jane.doe@example.com",
-    sender: "noreply@harp.io",
-    status: "Sent",
-    type: "Welcome Email",
-    environment: "Production",
-    sentAt: "2025-06-28 10:05",
-    opened: true,
-    clicked: false,
-    messageId: "msg_001",
-    domain: "harp.io",
-  },
-  {
-    subject: "Password Reset Request",
-    recipient: "john.smith@mail.com",
-    sender: "support@harp.io",
-    status: "Opened",
-    type: "Password Reset",
-    environment: "Production",
-    sentAt: "2025-06-28 09:45",
-    opened: true,
-    clicked: true,
-    messageId: "msg_002",
-    domain: "harp.io",
-  },
-  {
-    subject: "Verify Your Email Address",
-    recipient: "user123@clientmail.com",
-    sender: "noreply@harp.io",
-    status: "Bounced",
-    type: "Verification",
-    environment: "Staging",
-    sentAt: "2025-06-27 18:20",
-    opened: false,
-    clicked: false,
-    messageId: "msg_003",
-    domain: "sandbox.harpmail.org",
-  },
-  {
-    subject: "Invoice #45678",
-    recipient: "billing@company.org",
-    sender: "billing@harp.io",
-    status: "Sent",
-    type: "Invoice",
-    environment: "Production",
-    sentAt: "2025-06-26 14:00",
-    opened: true,
-    clicked: true,
-    messageId: "msg_004",
-    domain: "harp.io",
-  },
-  {
-    subject: "Important System Notification",
-    recipient: "admin@company.org",
-    sender: "alerts@harp.io",
-    status: "Failed",
-    type: "System Alert",
-    environment: "Production",
-    sentAt: "2025-06-25 22:50",
-    opened: false,
-    clicked: false,
-    messageId: "msg_005",
-    domain: "harp.io",
-  },{
+  }, {
     subject: "Welcome to Harp Messaging!",
     recipient: "jane.doe@example.com",
     sender: "noreply@harp.io",
@@ -646,3 +500,58 @@ export const newEmailData = [
     domain: "harp.io",
   },
 ];
+
+export const domainTableData = [
+  {
+    id: randomId(),
+    domain: "harp.io",
+    verified: "Verified",
+    spf: "Pass",
+    dkim: "Fail",
+    addedOn: "2025-06-25",
+    lastUsed: "2025-06-28 10:30",
+    actions: ["Edit", "Logs"]
+  },
+  {
+    id: randomId(),
+    domain: "sandbox.harpmail.org",
+    verified: "Pending",
+    spf: "Pass",
+    dkim: "Pass",
+    addedOn: "2025-06-20",
+    lastUsed: "N/A",
+    actions: ["Verify", "Delete"]
+  },
+  {
+    id: randomId(),
+    domain: "mail.harpexample.com",
+    verified: "Verified",
+    spf: "Pass",
+    dkim: "Pass",
+    addedOn: "2025-05-12",
+    lastUsed: "2025-06-27 16:42",
+    actions: ["Edit", "Logs"]
+  },
+  {
+    id: randomId(),
+    domain: "test.harplabs.net",
+    verified: "Unverified",
+    spf: "Fail",
+    dkim: "Fail",
+    addedOn: "2025-04-30",
+    lastUsed: "N/A",
+    actions: ["Verify", "Delete"]
+  }
+];
+
+export interface domainProps {
+  id: string,
+  domain: string,
+  verified: string,
+  spf: string,
+  dkim: string,
+  addedOn: string,
+  lastUsed: string,
+  actions: string[]
+}
+

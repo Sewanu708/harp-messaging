@@ -1,10 +1,61 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react"
 import { MdOutlineArrowDropDown } from "react-icons/md"
 import Table from "./table"
+import GetMailbyId from "./GetMailbyId"
+import { useEffect, useState } from "react"
+import { dataProps, newEmailData } from "@/data"
+import { useRouter } from "next/navigation"
+
 
 function View() {
-    const more = ['1', '2', '...', '9', '10']
+    const more = ['1', '2', '...', '9', '10'];
+
+    interface ColumnProps<T> {
+        header: string,
+        accessor: keyof T,
+        render?: (value: string) => React.ReactNode
+    }
+
+    const columns: ColumnProps<dataProps>[] = [
+        { header: 'id', accessor: 'messageId' },
+        { header: 'Subject', accessor: 'subject' },
+        { header: 'recipient', accessor: 'recipient' },
+        { header: 'status', accessor: 'status' },
+        { header: 'Sent At', accessor: 'sentAt' }
+    ];
+    const [filterInput, setFilterInput] = useState<string>('');
+    const [data, setData] = useState(newEmailData);
+    function handleSorting(accessor: string, sortOrder: string) {
+        return () => {
+
+            if (accessor) {
+                const sorted = [...data.sort((a, b) => {
+                    return (
+                        a[accessor as keyof dataProps].toString().localeCompare(
+                            b[accessor as keyof dataProps].toString(),
+                            'en',
+                            { numeric: true }
+                        ) * (sortOrder === 'asc' ? 1 : -1)
+                    )
+                })];
+
+                setData(sorted);
+            }
+        };
+    }
+    const navigate = useRouter()
+    useEffect(() => {
+        if (filterInput.length > 0) {
+            const filterData = newEmailData.filter((item) =>
+                item.messageId.toLocaleLowerCase().includes(filterInput.toLocaleLowerCase())
+            );
+            setData(filterData);
+        } else {
+            setData(newEmailData);
+        }
+    }, [filterInput]);
     return (
         <section className="py-4 px-4 w-full relative h-screen overflow-y-auto">
             <div className="py-2 w-full  bg-white  flex items-center justify-between">
@@ -13,7 +64,7 @@ function View() {
                 </div>
                 <div>
 
-                    <Button className="  mt-4 text-white px-5 py-2 rounded bg-[#0F6C68] cursor-pointer hover:bg-zinc-700">
+                    <Button onClick={()=>navigate.push('/email/send')} className="  mt-4 text-white px-5 py-2 rounded bg-[#0F6C68] cursor-pointer hover:bg-zinc-700">
                         <PlusIcon /> Send New  Email
                     </Button>
                 </div>
@@ -30,7 +81,8 @@ function View() {
                 </div>
 
             </div>
-            <Table />
+            <GetMailbyId input={filterInput} setInput={setFilterInput} placeholder="search with id" />
+            <Table input={filterInput} columns={columns} data={data} maxRow={9} handleSorting={handleSorting} sortDisplay={true} />
 
             <div className="w-full flex items-center justify-between mt-4">
                 <Button disabled>
@@ -56,4 +108,4 @@ function View() {
     )
 }
 
-export default View
+export default View 

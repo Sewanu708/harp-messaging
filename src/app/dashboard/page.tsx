@@ -5,9 +5,10 @@ import { MdSend, MdOutlineError, MdOutlineArrowDropDown } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 import { MdFilterList } from "react-icons/md";
 import Barchart from "@/components/Dashboard/BarChart";
-import Table from "@/components/Table";
-import { emailData } from "@/data";
+import { dataProps, newEmailData } from "@/data";
 import Piechart from "@/components/Dashboard/PieChart";
+import Table from "../email/viewmails/table";
+import { useState } from "react";
 const kpiData = [
     {
         number: 1200,
@@ -50,8 +51,22 @@ const pieData = [
     }
 ]
 
-
+interface ColumnProps<T> {
+    header: string,
+    accessor: keyof T,
+    render?: (value: string) => React.ReactNode
+}
+const columns: ColumnProps<dataProps>[] = [
+    { header: 'id', accessor: 'messageId' },
+    { header: 'Subject', accessor: 'subject' },
+    { header: 'recipient', accessor: 'recipient' },
+    { header: 'status', accessor: 'status'},
+    { header: 'Sent At', accessor: 'sentAt' }
+];
 function Page() {
+    const [filterInput, setFilterInput] = useState('')
+    const [data, setData] = useState(newEmailData);
+   
     return (
         <section className=" py-4 px-4 w-full h-screen overflow-y-auto">
             <div className="text-[#0F6C68] text-3xl font-semibold">Email Overview</div>
@@ -97,7 +112,7 @@ function Page() {
                 <div className="p-4 bg-white text-[#0F6C68] font-semibold text-lg rounded-t-md shadow-sm border-b border-zinc-200 mb-2">
                     Recent Activity
                 </div>
-                <Table headers={['Timestamp', 'Recipient', 'Subject', 'Status', 'Response Code']} data={emailData} />
+                <Table input={filterInput} columns={columns} data={data} maxRow={5} sortDisplay={false} />
             </div>
 
 

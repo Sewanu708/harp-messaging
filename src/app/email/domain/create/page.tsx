@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button"
 import { GlobalContext } from "@/context";
 import { domainTableData } from "@/data";
+import { dateGenerator, idGenerator } from "@/utils";
 import { useRouter } from "next/navigation"
 import { useContext, useState } from "react";
 
@@ -45,17 +46,9 @@ function CreateDomain() {
     }
     function postData() {
 
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0')
-        const day = (date.getDay()).toString().padStart(2, '0')
-        const hour = (date.getHours()).toString().padStart(2, '0')
-        const minutes = (date.getMinutes()).toString().padStart(2, '0')
-        const seconds = (date.getSeconds()).toString().padStart(2, '0')
 
-        const formatted = `${year}-${day}-${month}  ${hour}:${minutes}:${seconds}`
         const data = {
-            id: new Date().getTime() + Math.random().toString(36).substring(2, 9), domain: domainData.domain, verified: 'pending', spf: 'fail', dkim: 'fail', addedOn: formatted, lastUsed: 'N/A', actions: ['Edit', 'Logs']
+            id: idGenerator(), domain: domainData.domain, verified: 'pending', spf: 'fail', dkim: 'fail', addedOn: dateGenerator(), lastUsed: 'N/A', actions: ['Edit', 'Logs']
 
         }
         domainTableData.push(data)

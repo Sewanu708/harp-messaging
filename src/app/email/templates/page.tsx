@@ -1,7 +1,7 @@
 'use client'
 import GetMailbyId from "@/components/GetMailbyId"
 import { Button } from "@/components/ui/button"
-import { PlusIcon,  } from "lucide-react"
+import { PlusIcon, } from "lucide-react"
 import { useState } from "react"
 import {
   Card,
@@ -12,12 +12,14 @@ import {
   CardDescription
 } from "@/components/ui/card"
 import { emailTemplates } from "@/data"
+import { useRouter } from "next/navigation"
 
 
 
 
 
 function Template() {
+  const navigate = useRouter()
   const [input, setInput] = useState('')
   return (
     <section className="py-4 px-4 w-full relative h-screen overflow-y-auto">
@@ -33,7 +35,7 @@ function Template() {
         </div>
         <div>
 
-          <Button className=" capitalize mt-4 text-white px-5 py-2 rounded bg-[#0F6C68] cursor-pointer hover:bg-zinc-700">
+          <Button onClick={() => navigate.push('/email/templates/create')} className=" capitalize mt-4 text-white px-5 py-2 rounded bg-[#0F6C68] cursor-pointer hover:bg-zinc-700">
             <PlusIcon />Create New Template
           </Button>
         </div>
@@ -42,7 +44,7 @@ function Template() {
       <GetMailbyId input={input} setInput={setInput} placeholder="Find your templates by id" />
 
       <div className=" flex flex-wrap item-start justify-start gap-4">
-        <Card className="w-full md:w-[250px] shadow-md hover:shadow-lg transition-all p-4 duration-200 border-zinc-200">
+        <Card onClick={()=>navigate.push('/email/templates/create')} className="w-full md:w-[250px] shadow-md hover:shadow-lg transition-all p-4 duration-200 border-zinc-200">
 
 
           <CardContent className="text-sm  h-32 rounded-md bg-zinc-200 text-zinc-700 flex items-center justify-center cursor-pointer">

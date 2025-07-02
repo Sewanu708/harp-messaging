@@ -555,7 +555,40 @@ export interface domainProps {
   lastUsed: string,
   actions: string[]
 }
+export const emailCategories = [
+    { value: "welcome", label: "Welcome" },
+    { value: "onboarding", label: "Onboarding" },
+    { value: "promotion", label: "Promotion" },
+    { value: "newsletter", label: "Newsletter" },
+    { value: "transactional", label: "Transactional" },
+    { value: "reminder", label: "Reminder" },
+    { value: "feedback", label: "Survey / Feedback" },
+    { value: "reengagement", label: "Re-engagement" },
+    { value: "abandoned-cart", label: "Abandoned Cart" },
+    { value: "notification", label: "Alert / Notification" },
+    { value: "event-invitation", label: "Event Invitation" },
+    { value: "thank-you", label: "Thank You" },
+    { value: "password-reset", label: "Password Reset" },
+    { value: "account-update", label: "Account Update" }
+];
 
+export const emailTags = [
+    { value: "important", label: "Important" },
+    { value: "new-user", label: "New User" },
+    { value: "automation", label: "Automation" },
+    { value: "manual", label: "Manual" },
+    { value: "marketing", label: "Marketing" },
+    { value: "system", label: "System" },
+    { value: "user-action", label: "User Action" },
+    { value: "sale", label: "Sale" },
+    { value: "announcement", label: "Announcement" },
+    { value: "update", label: "Update" },
+    { value: "feedback-request", label: "Feedback Request" },
+    { value: "internal", label: "Internal" },
+    { value: "external", label: "External" },
+    { value: "test", label: "Test" },
+    { value: "draft", label: "Draft" }
+];
 // export interface TemplateProps {
 //   id: string,
 //   name: string,

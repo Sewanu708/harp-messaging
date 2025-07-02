@@ -50,14 +50,15 @@ export const sidebarItems = [
         label: "Templates",
         id: randomId(),
         items: [
-          {
-            label: "Create Templates",
+           {
+            label: "View Template",
             path: "/email/templates"
           },
           {
-            label: "View Template",
-            path: "/email/template-view"
-          }
+            label: "Create Templates",
+            path: "/email/templates/create"
+          },
+         
         ]
       },
       {
@@ -555,3 +556,71 @@ export interface domainProps {
   actions: string[]
 }
 
+// export interface TemplateProps {
+//   id: string,
+//   name: string,
+//   subject: string,
+//   category: string,
+//   createdBy: string,
+//   createdAt: string,
+//   lastEdited: string,
+//   status: string,
+//   usageCount: number,
+//   tags: string[],
+//   content: string,
+// }
+export const emailTemplates = [
+  {
+    id: "temp_001",
+    name: "Welcome Email",
+    subject: "Welcome to Harp, {{user.firstName}}!",
+    category: "User Onboarding",
+    createdBy: "Pelz",
+    createdAt: "2024-07-20T09:45:00Z",
+    lastEdited: "2024-07-28T13:20:00Z",
+    status: "active",
+    usageCount: 148,
+    tags: ["welcome", "onboarding", "new user"],
+    content: `
+      <h1>Welcome to Harp, {{user.firstName}}!</h1>
+      <p>We’re excited to have you. Explore our platform and start sending notifications right away.</p>
+    `,
+  },
+  {
+    id: "temp_002",
+    name: "Password Reset",
+    subject: "Reset your password",
+    category: "Security",
+    createdBy: "Pelz",
+    createdAt: "2024-07-15T12:00:00Z",
+    lastEdited: "2024-07-25T10:10:00Z",
+    status: "active",
+    usageCount: 89,
+    tags: ["password", "security", "user"],
+    content: `
+      <p>Hello {{user.firstName}},</p>
+      <p>You requested a password reset. Click the link below to proceed:</p>
+      <a href="{{resetLink}}">Reset Password</a>
+    `,
+  },
+  {
+    id: "temp_003",
+    name: "Monthly Summary",
+    subject: "Here’s your monthly report, {{user.firstName}}",
+    category: "Reports",
+    createdBy: "Pelz",
+    createdAt: "2024-07-01T10:10:00Z",
+    lastEdited: "2024-07-26T16:45:00Z",
+    status: "draft",
+    usageCount: 27,
+    tags: ["report", "monthly", "summary"],
+    content: `
+      <h2>Monthly Summary</h2>
+      <p>Hi {{user.firstName}}, here’s a breakdown of your usage this month.</p>
+      <ul>
+        <li>Emails sent: {{stats.emails}}</li>
+        <li>Open rate: {{stats.openRate}}%</li>
+      </ul>
+    `,
+  },
+];

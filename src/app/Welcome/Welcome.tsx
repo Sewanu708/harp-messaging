@@ -12,7 +12,7 @@ export default function Welcome() {
     if (!context) return 'Context is undefined'
     const {setSelectedChannel} = context
     return (
-        <div className="gradient-bg min-h-screen w-full flex flex-col items-center justify-center px-4 py-10">
+        <div className="gradient-bg h-screen overflow-y-auto  flex flex-col items-center justify-start px-4 py-10">
             <div className="text-center mb-6">
                 <h1 className="text-4xl font-extrabold text-zinc-800">Good Morning, Pelz 👋</h1>
                 <p className="text-xl mt-2 text-[#0F6C68]">

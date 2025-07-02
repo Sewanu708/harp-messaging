@@ -1,8 +1,8 @@
 'use client'
-import GetMailbyId from "../../viewmails/GetMailbyId"
+import GetMailbyId from "../../../../components/GetMailbyId"
 import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react";
-import Table from "../../viewmails/table";
+import Table from "../../../../components/Dashboard/table";
 import { useEffect, useState } from "react";
 import { domainProps, domainTableData } from "@/data";
 import { BiDotsHorizontalRounded } from "react-icons/bi";

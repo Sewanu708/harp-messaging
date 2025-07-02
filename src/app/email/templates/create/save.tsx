@@ -26,7 +26,7 @@ function Save({ saveProp }: SaveProp) {
         templateName: 'Your Template Name Field is Blank'
     })
 
-    type DataKey = 'category' | 'tags' | 'templateName'
+
     function handleErrors(value: string, name: string) {
         if (value.length < 2) {
             setError(prev => ({ ...prev, [name]: `${name} should be greater than one letter` }))

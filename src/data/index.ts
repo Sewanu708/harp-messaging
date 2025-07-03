@@ -2,6 +2,7 @@ import { MdOutlineNotifications } from 'react-icons/md';
 import { FiMail } from "react-icons/fi";
 import { RiMessage2Line } from 'react-icons/ri';
 import { BsWhatsapp } from 'react-icons/bs';
+import { Api } from '@/app/email/api/columns';
 function randomId() {
   return new Date().getTime() + Math.random().toString(36).substring(2, 9);
 }
@@ -42,7 +43,7 @@ export const sidebarItems = [
         items: [
           {
             label: "Manage Keys",
-            path: "/email/api-keys"
+            path: "/email/api"
           }
         ]
       },
@@ -504,7 +505,7 @@ export const newEmailData = [
 
 export const domainTableData = [
   {
-    id: randomId(),
+    id:'1',
     domain: "harp.io",
     verified: "Verified",
     spf: "Pass",
@@ -514,7 +515,7 @@ export const domainTableData = [
     actions: ["Edit", "Logs"]
   },
   {
-    id: randomId(),
+    id: '2',
     domain: "sandbox.harpmail.org",
     verified: "Pending",
     spf: "Pass",
@@ -524,7 +525,7 @@ export const domainTableData = [
     actions: ["Verify", "Delete"]
   },
   {
-    id: randomId(),
+    id: '3',
     domain: "mail.harpexample.com",
     verified: "Verified",
     spf: "Pass",
@@ -534,7 +535,7 @@ export const domainTableData = [
     actions: ["Edit", "Logs"]
   },
   {
-    id: randomId(),
+    id: '4',
     domain: "test.harplabs.net",
     verified: "Unverified",
     spf: "Fail",
@@ -589,19 +590,15 @@ export const emailTags = [
     { value: "test", label: "Test" },
     { value: "draft", label: "Draft" }
 ];
-// export interface TemplateProps {
-//   id: string,
-//   name: string,
-//   subject: string,
-//   category: string,
-//   createdBy: string,
-//   createdAt: string,
-//   lastEdited: string,
-//   status: string,
-//   usageCount: number,
-//   tags: string[],
-//   content: string,
-// }
+
+
+export const api: Api[] = [
+
+];
+
+
+
+
 export const emailTemplates = [
   {
     id: "temp_001",

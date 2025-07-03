@@ -41,7 +41,7 @@ function Save({ saveProp }: SaveProp) {
 
     function handleDataSubmission() {
         const templateData = {
-            id: idGenerator(),
+            id: '1',
             name: data.templateName,
             subject: "Welcome to Harp, {{user.firstName}}!",
             category: data.category,

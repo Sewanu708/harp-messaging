@@ -7,7 +7,7 @@ import { MdFilterList } from "react-icons/md";
 import Barchart from "@/components/Dashboard/BarChart";
 import { dataProps, newEmailData } from "@/data";
 import Piechart from "@/components/Dashboard/PieChart";
-import Table from "../../components/Dashboard/table";
+import Table from "../../components/table";
 const kpiData = [
     {
         number: 1200,

@@ -48,7 +48,7 @@ function CreateDomain() {
 
 
         const data = {
-            id: idGenerator(), domain: domainData.domain, verified: 'pending', spf: 'fail', dkim: 'fail', addedOn: dateGenerator(), lastUsed: 'N/A', actions: ['Edit', 'Logs']
+            id: '1', domain: domainData.domain, verified: 'pending', spf: 'fail', dkim: 'fail', addedOn: dateGenerator(), lastUsed: 'N/A', actions: ['Edit', 'Logs']
 
         }
         domainTableData.push(data)

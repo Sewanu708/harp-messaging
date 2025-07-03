@@ -107,11 +107,11 @@ export const columns: ColumnDef<domainProps>[] = [
                         <DropdownMenuItem
                             onClick={() => navigator.clipboard.writeText(data.id)}
                         >
-                            Copy payment ID
+                            Delete
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
+                        <DropdownMenuItem>Update</DropdownMenuItem>
+                        <DropdownMenuItem>Verify</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

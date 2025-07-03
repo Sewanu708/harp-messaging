@@ -7,12 +7,10 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { MoreHorizontal, ArrowUpDown } from "lucide-react";
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+
 export interface dataProps {
     subject: string,
     recipient: string,
@@ -83,11 +81,9 @@ export const mainDataColumns: ColumnDef<dataProps>[] = [
                         <DropdownMenuItem
                             onClick={() => navigator.clipboard.writeText(payment.messageId)}
                         >
-                            Copy payment ID
+                            Preview
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
+                      
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

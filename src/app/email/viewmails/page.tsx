@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react"
 import { newEmailData } from "@/data"
 import { useRouter } from "next/navigation"
-import { mainDataColumns } from "@/components/columns"
+import { mainDataColumns } from "@/app/email/viewmails/columns"
 import { DataTable } from "@/components/data-table"
 
 

@@ -26,7 +26,7 @@ function DescriptionPopUp({ display, createAPI,description }: Props) {
                         id="describe"
                         name="describe"
                         placeholder="Describe your API"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0F6C68] transition"
                         onInput={e => {
                             const { value } = e.target as HTMLInputElement;
                             description(value);
@@ -46,7 +46,7 @@ function DescriptionPopUp({ display, createAPI,description }: Props) {
                     <Button
                         type="submit"
                         variant="default"
-                        className="px-5 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
+                        className="px-5 py-2 rounded-md bg-[#0F6C68] text-white hover:bg-[#0F6C68] transition"
                     >
                         Create
                     </Button>

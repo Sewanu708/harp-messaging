@@ -45,7 +45,7 @@ function PopUp({ close, description ,setData}: Props) {
                         <span className="font-mono text-sm text-gray-800 flex-1 select-all">{random}</span>
                         {!copy ? (
                             <Copy
-                                className="ml-2 cursor-pointer text-gray-500 hover:text-blue-600 transition-colors"
+                                className="ml-2 cursor-pointer text-gray-500 hover:text-[#0F6C68] transition-colors"
                                 size={20}
                                 onClick={() => hanndleCopy(random)}
 

@@ -1,9 +1,7 @@
 'use client'
 import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react"
-import { api, newEmailData } from "@/data"
-import { useRouter } from "next/navigation"
-import { mainDataColumns } from "@/components/columns"
+import { api } from "@/data"
 import { DataTable } from "@/components/data-table"
 import { useState } from "react"
 import DescriptionPopUp from "./descriptionPopUp"

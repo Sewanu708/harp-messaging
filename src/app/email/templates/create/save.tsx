@@ -1,7 +1,7 @@
 'use client'
 
 import { emailCategories, emailTags, emailTemplates } from '@/data';
-import { dateGenerator, idGenerator } from '@/utils';
+import { dateGenerator } from '@/utils';
 import { useRouter } from 'next/navigation';
 import React, { useRef, useState } from 'react'
 interface SaveProp {

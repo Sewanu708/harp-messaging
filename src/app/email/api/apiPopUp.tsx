@@ -21,7 +21,7 @@ function PopUp({ close, description ,setData}: Props) {
         }, 2000)
     }
 
-    function handleNewApi(text: string) {
+    function handleNewApi( ) {
         const id = new Date().getMilliseconds().toString()
         const newApi = {
             id,
@@ -62,7 +62,7 @@ function PopUp({ close, description ,setData}: Props) {
                 </div>
                 <Button variant={"outline"} onClick={() => {
                     close(false)
-                    handleNewApi(random)
+                    handleNewApi()
                     }} className="cursor-pointer hover:bg-zinc-100 transition-all duration-300 ease-in-out">
                     Done
                 </Button>

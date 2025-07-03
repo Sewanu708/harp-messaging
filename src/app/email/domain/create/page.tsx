@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button"
 import { GlobalContext } from "@/context";
 import { domainTableData } from "@/data";
-import { dateGenerator, idGenerator } from "@/utils";
+import { dateGenerator } from "@/utils";
 import { useRouter } from "next/navigation"
 import { useContext, useState } from "react";
 

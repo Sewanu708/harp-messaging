@@ -1,6 +1,6 @@
 'use client'
-import GetMailbyId from "../../../../components/GetMailbyId"
-import { Button } from "@/components/ui/button"
+
+ import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react";
 import {  domainTableData } from "@/data";;
 import { useRouter } from "next/navigation";

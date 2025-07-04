@@ -30,7 +30,7 @@ function PopUp({ close, description ,setData}: Props) {
         }
        
         setData((prev: Api[]) => ([...prev, newApi]))
-        api.push(newApi)
+        // api.push(newApi)
     }
     const random = idGenerator()
     return (
@@ -51,11 +51,11 @@ function PopUp({ close, description ,setData}: Props) {
 
                             />
                         ) : (
-                            <CopyCheck className="ml-2 text-green-500" size={20} />
+                            <CopyCheck className="ml-2 text-[#0F6C68]" size={20} />
                         )}
                     </div>
                     {copy && (
-                        <span className="text-green-600 text-xs mt-2 block animate-fade-in">
+                        <span className="text-[#0F6C68] text-xs mt-2 block animate-fade-in">
                             Copied to clipboard!
                         </span>
                     )}

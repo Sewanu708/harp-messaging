@@ -6,8 +6,11 @@ interface GlobalContextType {
     selectedChannel: string;
     setSelectedChannel: (value: string) => void,
     domainData: DomainDataProps,
-    setDomainData: (value: DomainDataProps) => void
+    setDomainData: (value: DomainDataProps) => void,
+    actionDisplay: boolean
+    , setActionDisplay: (value: boolean) => void
 };
+
 
 interface DomainDataProps {
     domain: string,
@@ -20,9 +23,10 @@ function GlobalState({ children }: { children: React.ReactNode }) {
     const [domainData, setDomainData] = useState<DomainDataProps>({
         domain: '', region: '', provider: '', ip: ''
     })
+    const [actionDisplay, setActionDisplay] = useState(false)
 
     return (
-        <GlobalContext.Provider value={{ selectedChannel, setSelectedChannel, domainData, setDomainData }}>
+        <GlobalContext.Provider value={{ selectedChannel, actionDisplay, setActionDisplay, setSelectedChannel, domainData, setDomainData }}>
             {children}
         </GlobalContext.Provider>
     );

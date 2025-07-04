@@ -19,7 +19,7 @@ export function APIColumn() {
     if (context) {
         ({ setActionDisplay } = context)
       
-    } else { 'Context is undefined'; }
+    } 
 
     const columns: ColumnDef<Api>[] = [
         {

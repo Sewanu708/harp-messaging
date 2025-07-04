@@ -3,7 +3,6 @@ import { Copy, CopyCheck } from 'lucide-react'
 import React, { useState } from 'react'
 import { dateGenerator, idGenerator } from '../../../utils'
 import { Button } from '@/components/ui/button'
-import { api } from '@/data'
 import { Api } from './columns'
 
 interface Props {

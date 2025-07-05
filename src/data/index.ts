@@ -51,7 +51,7 @@ export const sidebarItems = [
         label: "Templates",
         id: randomId(),
         items: [
-           {
+          {
             label: "View Template",
             path: "/email/templates"
           },
@@ -59,7 +59,7 @@ export const sidebarItems = [
             label: "Create Templates",
             path: "/email/templates/create"
           },
-         
+
         ]
       },
       {
@@ -505,7 +505,7 @@ export const newEmailData = [
 
 export const domainTableData = [
   {
-    id:'1',
+    id: '1',
     domain: "harp.io",
     verified: "Verified",
     spf: "Pass",
@@ -557,44 +557,140 @@ export interface domainProps {
   actions: string[]
 }
 export const emailCategories = [
-    { value: "welcome", label: "Welcome" },
-    { value: "onboarding", label: "Onboarding" },
-    { value: "promotion", label: "Promotion" },
-    { value: "newsletter", label: "Newsletter" },
-    { value: "transactional", label: "Transactional" },
-    { value: "reminder", label: "Reminder" },
-    { value: "feedback", label: "Survey / Feedback" },
-    { value: "reengagement", label: "Re-engagement" },
-    { value: "abandoned-cart", label: "Abandoned Cart" },
-    { value: "notification", label: "Alert / Notification" },
-    { value: "event-invitation", label: "Event Invitation" },
-    { value: "thank-you", label: "Thank You" },
-    { value: "password-reset", label: "Password Reset" },
-    { value: "account-update", label: "Account Update" }
+  { value: "welcome", label: "Welcome" },
+  { value: "onboarding", label: "Onboarding" },
+  { value: "promotion", label: "Promotion" },
+  { value: "newsletter", label: "Newsletter" },
+  { value: "transactional", label: "Transactional" },
+  { value: "reminder", label: "Reminder" },
+  { value: "feedback", label: "Survey / Feedback" },
+  { value: "reengagement", label: "Re-engagement" },
+  { value: "abandoned-cart", label: "Abandoned Cart" },
+  { value: "notification", label: "Alert / Notification" },
+  { value: "event-invitation", label: "Event Invitation" },
+  { value: "thank-you", label: "Thank You" },
+  { value: "password-reset", label: "Password Reset" },
+  { value: "account-update", label: "Account Update" }
 ];
 
 export const emailTags = [
-    { value: "important", label: "Important" },
-    { value: "new-user", label: "New User" },
-    { value: "automation", label: "Automation" },
-    { value: "manual", label: "Manual" },
-    { value: "marketing", label: "Marketing" },
-    { value: "system", label: "System" },
-    { value: "user-action", label: "User Action" },
-    { value: "sale", label: "Sale" },
-    { value: "announcement", label: "Announcement" },
-    { value: "update", label: "Update" },
-    { value: "feedback-request", label: "Feedback Request" },
-    { value: "internal", label: "Internal" },
-    { value: "external", label: "External" },
-    { value: "test", label: "Test" },
-    { value: "draft", label: "Draft" }
+  { value: "important", label: "Important" },
+  { value: "new-user", label: "New User" },
+  { value: "automation", label: "Automation" },
+  { value: "manual", label: "Manual" },
+  { value: "marketing", label: "Marketing" },
+  { value: "system", label: "System" },
+  { value: "user-action", label: "User Action" },
+  { value: "sale", label: "Sale" },
+  { value: "announcement", label: "Announcement" },
+  { value: "update", label: "Update" },
+  { value: "feedback-request", label: "Feedback Request" },
+  { value: "internal", label: "Internal" },
+  { value: "external", label: "External" },
+  { value: "test", label: "Test" },
+  { value: "draft", label: "Draft" }
 ];
 
 
 export const api: Api[] = [
 
 ];
+
+// export interface WebhookProps {
+//   domainId: number;
+//   delivered: string;
+//   opened: string;
+// clicked: string;
+// bounced: string;
+// complained: string;
+// unsubscribed: string;
+// stored: string;
+// }
+
+export const webhookdata = [
+  {
+    id: '1',
+    metadata: {
+      delivered: "https://your-api.com/webhooks/delivered",
+      opened: "https://your-api.com/webhooks/opened",
+      clicked: '',
+      bounced: '',
+      complained: '',
+      unsubscribed: '',
+    }
+  },
+  {
+    id: '2',
+    metadata: {
+      delivered: "https://your-api.com/webhooks/delivered",
+      opened: "",
+      clicked: 'https://your-api.com/webhooks/clicked',
+      bounced: '',
+      complained: '',
+      unsubscribed: 'https://your-api.com/webhooks/unsubscribed',
+    }
+  },
+  {
+    id: '3',
+    metadata: {
+      delivered: "https://your-api.com/webhooks/delivered",
+      opened: "",
+      clicked: 'https://your-api.com/webhooks/clicked',
+      bounced: '',
+      complained: '',
+      unsubscribed: 'https://your-api.com/webhooks/unsubscribed',
+    }
+  },
+  {
+    id: '4',
+    metadata: {
+      delivered: "https://your-api.com/webhooks/delivered",
+      opened: "",
+      clicked: 'https://your-api.com/webhooks/clicked',
+      bounced: '',
+      complained: '',
+      unsubscribed: 'https://your-api.com/webhooks/unsubscribed',
+    }
+  }
+];
+
+
+
+export interface WebhookProps {
+  id: string,
+  event: string,
+  url: string,
+}
+
+
+export const Webhooks = [{
+  id: '1',
+  event: 'delivered',
+  url: '',
+}, {
+  id: '2',
+  event: 'opened',
+  url: '',
+}, {
+  id: '3',
+  event: 'clicked',
+  url: '',
+}, {
+  id: '4',
+  event: 'bounced',
+  url: '',
+}, {
+  id: '5',
+  event: 'complained',
+  url: '',
+}, {
+  id: '6',
+  event: 'unsubscribed',
+  url: '',
+}]
+
+
+
 
 
 

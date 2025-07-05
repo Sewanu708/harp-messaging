@@ -46,7 +46,7 @@ function APIManager() {
                 )
             }
             {actionDisplay && (
-                <Delete id="undedfinedID" />
+                 <Delete text="Are you sure you want to delete this" deletefunc={()=>{}} actionWord="Delete"/>
             )
 
             }

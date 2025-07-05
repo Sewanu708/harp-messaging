@@ -71,7 +71,7 @@ function Page() {
 
             <div className="flex items-end justify-end flex-wrap gap-4 sm:gap-0 mt-4">
                 <div className="flex items-center mt-4  border rounded-sm w-fit">
-                    <div className="flex p-2 flex gap-2   items-center cursor-pointer hover:bg-zinc-100 transition-all duration-200">
+                    <div className="flex p-2 gap-2 items-center cursor-pointer hover:bg-zinc-100 transition-all duration-200">
                         <SlCalender className="text-zinc-600 text-sm" />
                         <span className="font-[500] text-zinc-600 text-sm">Oct 12 - Nov 19</span>
                     </div>
@@ -79,7 +79,7 @@ function Page() {
                         <span className="font-[500] text-zinc-600 text-sm">Monthly</span><MdOutlineArrowDropDown className="text-zinc-600 text-sm" />
                     </div>
                 </div>
-                <div className="flex  py-2 px-2 flex gap-2   items-center cursor-pointer hover:bg-zinc-100 transition-all duration-200 rounded-sm border ml-4">
+                <div className="flex  py-2 px-2  gap-2   items-center cursor-pointer hover:bg-zinc-100 transition-all duration-200 rounded-sm border ml-4">
                     <MdFilterList className="text-zinc-600" />
                     <span className="font-[500] text-zinc-600 text-sm">Filter</span>
                 </div>

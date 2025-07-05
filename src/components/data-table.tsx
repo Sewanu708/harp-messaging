@@ -26,7 +26,7 @@ import { useState } from "react"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
-    data: TData[], filterkey: string
+    data: TData[], filterkey?: string
 }
 
 export function DataTable<TData, TValue>({
@@ -56,14 +56,17 @@ export function DataTable<TData, TValue>({
 
         <div className="w-full">
             <div className="flex items-center py-4">
-                <Input
-                    placeholder={`Filter by ${filterkey}`}
-                    value={(table.getColumn(filterkey)?.getFilterValue() as string) ?? ""}
-                    onChange={(event) =>
-                        table.getColumn(filterkey)?.setFilterValue(event.target.value)
-                    }
-                    className="w-full "
-                />
+                {
+                    filterkey ? <Input
+                        placeholder={`Filter by ${filterkey}`}
+                        value={(table.getColumn(filterkey)?.getFilterValue() as string) ?? ""}
+                        onChange={(event) =>
+                            table.getColumn(filterkey)?.setFilterValue(event.target.value)
+                        }
+                        className="w-full "
+                    /> : ''
+                }
+
             </div>
             <div className="rounded-md border">
                 <Table>

@@ -11,6 +11,7 @@ import { useContext } from "react";
 function AddDomainPopup() {
 
     const navigator = useRouter();
+    const columns = useColumns()
     const context = useContext(GlobalContext)
     if (!context) return ('context not found')
     const {  setIsAddDomainOpen } = context
@@ -28,7 +29,7 @@ function AddDomainPopup() {
 
                 </div>
 
-                <DataTable filterkey="domain" columns={useColumns()} data={domainTableData} />
+                <DataTable filterkey="domain" columns={columns} data={domainTableData} />
             </div>
 
         </div>

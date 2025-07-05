@@ -1,5 +1,4 @@
 'use client'
-import { BiDownArrowCircle } from "react-icons/bi";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -20,7 +19,7 @@ export default function Welcome() {
 
             <div className="text-center text-lg sm:text-xl text-zinc-600 italic mb-10 flex justify-center items-center gap-2">
                 <div>Choose a messaging channel to get started</div>
-                <div className="text-2xl mt-[10px] animate-bounce"><BiDownArrowCircle /></div>
+               
             </div>
 
             <div className="mt-16" />

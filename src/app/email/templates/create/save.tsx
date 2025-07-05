@@ -62,7 +62,7 @@ function Save({ saveProp }: SaveProp) {
     }
 
     return (
-        <div className="fixed backdrop-blur inset-0 flex flex-col w-full items-center justify-center z-50">
+        <div className="fixed  inset-0 flex flex-col w-full items-center justify-center z-50">
             <div className='w-[70%] max-w-xl bg-white rounded-lg shadow-lg p-8' ref={ref}>
                 <h2 className="text-xl font-semibold mb-4 text-zinc-800">Save Template</h2>
                 <form className="flex flex-col gap-4" onSubmit={(e) => {

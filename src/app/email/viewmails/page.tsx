@@ -13,7 +13,7 @@ function View() {
     return (
         <section className="py-4 px-4 w-full relative h-screen overflow-y-auto">
             <div className="py-2 w-full  bg-white  flex items-center justify-between">
-                <div className="  font-semibold text-[#0F6C68] text-2xl">
+                <div className="  text-[#0F6C68] text-2xl">
                     View Mails
                 </div>
                 <div>   

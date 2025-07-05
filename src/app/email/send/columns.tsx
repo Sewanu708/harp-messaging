@@ -13,7 +13,7 @@ import { domainProps } from "@/data";
 import { useContext } from "react";
 import { GlobalContext } from "@/context";
 
-export function columns() {
+export function useColumns() {
     const context = useContext(GlobalContext)
 
     let setSelectedDomain: (value: string) => void

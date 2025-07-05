@@ -9,10 +9,11 @@ import Link from "next/link";
 import ApiCode from "@/components/ApiCode";
 import { GlobalContext } from "@/context";
 function Email() {
+    const [apiGenerator, setApiGenerator] = useState(false)
     const context = useContext(GlobalContext)
     if (!context) return ('context not found')
     const { isAddDomainOpen, selectedDomain, setIsAddDomainOpen, setSelectedDomain } = context
-    const [apiGenerator, setApiGenerator] = useState(false)
+    
 
     return (
         <section className="h-screen overflow-y-auto">

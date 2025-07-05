@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import { domainTableData } from "@/data";
 import { DataTable } from "./data-table";
-import { columns } from "@/app/email/send/columns";
+import { useColumns } from "@/app/email/send/columns";
 import { GlobalContext } from "@/context";
 import { useContext } from "react";
 
@@ -28,7 +28,7 @@ function AddDomainPopup() {
 
                 </div>
 
-                <DataTable filterkey="domain" columns={columns()} data={domainTableData} />
+                <DataTable filterkey="domain" columns={useColumns()} data={domainTableData} />
             </div>
 
         </div>

@@ -67,7 +67,7 @@ function Page() {
    
     return (
         <section className=" py-4 px-4 w-full h-screen overflow-y-auto">
-            <div className="text-[#0F6C68] text-3xl font-semibold">Email Overview</div>
+            <div className="text-[#0F6C68] text-2xl  ">Email Overview</div>
 
             <div className="flex items-end justify-end flex-wrap gap-4 sm:gap-0 mt-4">
                 <div className="flex items-center mt-4  border rounded-sm w-fit">
@@ -91,14 +91,14 @@ function Page() {
                 ))}
             </div>
             <div className="flex items-center justify-between flex-wrap gap-8 mb-6">
-                <div className="flex-1 min-64 min-w-[400px]  max-h-[300px] min-h-auto bg-white rounded-md shadow-lg ">
-                    <div className="text-gray-400 font-semibold text-lg mb-4 p-4">Monthly Data Overview</div>
+                <div className="flex-1 min-64 min-w-[400px]  max-h-[300px] min-h-auto bg-white rounded-md shadow-sm ">
+                    <div className="text-lg mb-4 text-[#0F6C68] p-4">Monthly Data Overview</div>
                     <div>
                         <Barchart data={chartData} />
                     </div>
                 </div>
                 <div className="max-w-240 min-64 max-h-[300px] min-h-auto bg-white rounded-md shadow-lg ">
-                    <div className="text-gray-400 font-semibold text-lg mb-2 p-4">Email Engagement Overview</div>
+                    <div className=" text-[#0F6C68] text-lg mb-2 p-4">Email Engagement Overview</div>
                     <div>
                         <Piechart data={pieData} />
                     </div>

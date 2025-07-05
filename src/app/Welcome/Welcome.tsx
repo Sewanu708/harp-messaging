@@ -10,30 +10,29 @@ import { sidebarItems } from "@/data";
 export default function Welcome() {
     const context = useContext(GlobalContext)
     if (!context) return 'Context is undefined'
-    const {setSelectedChannel} = context
+    const { setSelectedChannel } = context
     return (
-        <div className="gradient-bg h-screen overflow-y-auto  flex flex-col items-center justify-start px-4 py-10">
-            <div className="text-center mb-6">
-                <h1 className="text-4xl font-extrabold text-zinc-800">Good Morning, Pelz 👋</h1>
-                <p className="text-xl mt-2 text-[#0F6C68]">
-                    Welcome to <span className="font-bold">Harp</span>
-                </p>
+        <div className="bg-zinc-50 h-screen overflow-y-auto  flex flex-col items-center justify-start px-4 py-10">
+            <div className="text-center mb-2 text-[36px]">
+                Welcome to <span className="font-[400]">Harp Messaging</span>
+
             </div>
 
             <div className="text-center text-lg sm:text-xl text-zinc-600 italic mb-10 flex justify-center items-center gap-2">
-                <span>Choose a messaging channel to get started</span>
-                <span className="text-2xl animate-bounce"><BiDownArrowCircle /></span>
+                <div>Choose a messaging channel to get started</div>
+                <div className="text-2xl mt-[10px] animate-bounce"><BiDownArrowCircle /></div>
             </div>
 
+            <div className="mt-16" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl px-4">
                 {sidebarItems.map((item, index) => (
                     <Link href={item.pathName} onClick={() => setSelectedChannel(item.header)} key={index}>
                         <Card
 
-                            className="hover:shadow-md transition-shadow  cursor-pointer shadow-xl  duration-300 bg-white rounded-2xl"
+                            className="hover:shadow-md transition-shadow  cursor-pointer   duration-300 bg-white rounded-md"
                         >
-                            <CardHeader className="flex flex-col items-start space-y-2">
-                                <item.icon className="text-3xl text-[#0F6C68]" />
+                            <CardHeader className="flex  items-center justify-start gap-x-2">
+                                <item.icon className="text-xl text-[#0F6C68]" />
                                 <CardTitle className="text-lg">{item.header}</CardTitle>
                             </CardHeader>
                             <CardContent className="h-8">

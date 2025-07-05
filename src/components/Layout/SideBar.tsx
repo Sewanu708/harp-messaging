@@ -39,14 +39,14 @@ export default function SideBar() {
     if (!context) return 'Error, Context is undefined'
     const { setSelectedChannel, selectedChannel } = context
     
-    // Fixed dropdown toggle function
+    
     const handleDropdownToggle = (header: string) => {
         if (activeDropdown === header) {
             setActiveDropdown('');
-            // Don't clear selectedChannel here, let it be managed separately
+         
         } else {
             setActiveDropdown(header);
-            setSelectedChannel(header); // Set selectedChannel when opening
+            setSelectedChannel(header); 
         }
     };
 
@@ -63,14 +63,13 @@ export default function SideBar() {
         return activeDropdown === header;
     };
 
-    // Helper function to determine if dropdown should be shown
     const shouldShowDropdown = (header: string) => {
         return activeDropdown === header && !collapseSidebar;
     };
 
 
     return (
-        <div className={`h-screen min-w-16 relative bg-white shadow-xl text-white overflow-y-hidden ${collapseSidebar ? 'w-16' : 'w-64'} transition-all duration-300 flex justify-between flex-col`}>
+        <div className={`h-screen min-w-16 relative bg-white shadow-xl z-20  text-white overflow-y-hidden ${collapseSidebar ? 'w-16' : 'w-64'} transition-all duration-300 flex justify-between flex-col`}>
             <button className={`hover:scale-95 absolute top-3.5 rounded-xl text-[#0F6C68] z-50 bg-white right-[5px] p-2 transition-all duration-300 cursor-pointer group ${collapseSidebar ? 'left-10 ' : 'right-0 rotate-180'}`} onClick={() => {
                 setCollapseSidebar(!collapseSidebar)
 
@@ -81,13 +80,13 @@ export default function SideBar() {
             <div className="flex-shrink-0">
                 {!collapseSidebar ? (
                     <div className="flex items-center justify-between px-8 py-4">
-                        <div className="text-[#0F6C68] text-3xl font-[600]">
+                        <div className="text-[#0F6C68] text-3xl font-[500]">
                             Harp
                         </div>
                     </div>
                 ) : (
                     <div className="flex items-center relative justify-between px-4 py-4">
-                        <div className="text-[#0F6C68] text-3xl font-[600]">
+                        <div className="text-[#0F6C68] text-3xl font-[500]">
                             H
                         </div>
                     </div>
@@ -104,8 +103,8 @@ export default function SideBar() {
                     )}
                     <Link href={'/dashboard'} className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
                         ? 'justify-center px-4'
-                        : 'px-2 justify-start mx-4 rounded-lg hover:shadow-sm hover:bg-[#0F6C68]/5'
-                        } ${selectedChannel === 'dashboard' ? 'bg-zinc-200' : ''}`} onClick={() => {
+                        : 'px-2 justify-start mx-4 rounded-lg  hover:bg-zinc-50'
+                        } ${selectedChannel === 'dashboard'? 'bg-zinc-50':''} `} onClick={() => {
                             setSelectedChannel('dashboard')
                             setActiveDropdown('');
                             setActiveInnerDropdown('');
@@ -119,7 +118,7 @@ export default function SideBar() {
                                     Dashboard
                                 </span>
                                 {
-                                    selectedChannel === 'dashboard' && <div className="absolute left-0 w-1 h-8 bg-[#0F6C68] rounded-r-full opacity-100"></div>
+                                    selectedChannel === 'dashboard' && <div className="absolute left-4 w-1 h-8 bg-[#0F6C68] rounded-r-full opacity-100"></div>
                                 }
                             </>
 
@@ -140,8 +139,8 @@ export default function SideBar() {
                                     <div
                                         className={`gap-2 flex items-center mb-2 cursor-pointer group py-2 ${collapseSidebar
                                             ? 'justify-center px-4'
-                                            : 'px-2 justify-start mx-4 rounded-lg relative hover:shadow-xl'
-                                            } ${selectedChannel === section.header ? 'bg-zinc-200' : ''}`}
+                                            : 'px-2 justify-start mx-4 rounded-lg relative hover:bg-zinc-50'
+                                            } ${selectedChannel === section.header? 'bg-zinc-50':''}`}
                                         onClick={() => {
                                             setCollapseSidebar(false)
                                             handleDropdownToggle(section.header)
@@ -177,7 +176,7 @@ export default function SideBar() {
                                                         handleInnerDropdownToggle(item.label) 
                                                     }}>
                                                         <div className={`flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative `}>
-                                                            <div className={`w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors `}></div>
+                                                           
                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
                                                                 {item.label}
                                                             </span>
@@ -190,7 +189,7 @@ export default function SideBar() {
                                                                 item.items.map((sub, index) => (
                                                                     <div className="ml-4 pl-4 border-l border-zinc-200" key={sub.label || index}>
                                                                         <Link href={sub.path} className={`flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative ${(pathName===sub.path)? 'bg-[#0F6C68]/5 ' :''}` } onClick={(e) => e.stopPropagation()}>
-                                                                            <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
+                                                                            
                                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
                                                                                 {sub.label}
                                                                             </span>
@@ -204,7 +203,7 @@ export default function SideBar() {
                                                 </li> : <Link href={item.path} key={item.label} className="mb-2">
                                                     <div className="group/item">
                                                         <div className={`flex items-center px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[#0F6C68]/5 relative ${(pathName===item.path)? 'bg-[#0F6C68]/5 ' :''}` }>
-                                                            <div className="w-2 h-2 rounded-full bg-gray-300 group-hover/item:bg-[#0F6C68] transition-colors"></div>
+                                                    
                                                             <span className="ml-3 text-sm text-gray-600 group-hover/item:text-[#0F6C68] font-medium transition-colors">
                                                                 {item.label}
                                                             </span>

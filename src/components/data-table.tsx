@@ -57,7 +57,7 @@ export function DataTable<TData, TValue>({
         <div className="w-full">
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Filter by id..."
+                    placeholder={`Filter by ${filterkey}`}
                     value={(table.getColumn(filterkey)?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
                         table.getColumn(filterkey)?.setFilterValue(event.target.value)
@@ -72,7 +72,7 @@ export function DataTable<TData, TValue>({
                             <TableRow key={headerGroup.id} className="">
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead key={header.id} className="">
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(

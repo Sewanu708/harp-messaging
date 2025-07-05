@@ -48,8 +48,8 @@ function ApiCode({ selectedDomain, apiGenerator, setApiGenerator }: ApiCodeProps
                 Send via API
             </Button>
 
-            {apiGenerator && <div className="min-w-64 max-w-128 shadow-2xl">
-                <div className="flex p-0 border-b items-center justify-between rounded-t-xl bg-zinc-900">
+            {apiGenerator && <div className="min-w-64 max-w-128 rounded-sm border">
+                <div className="flex p-0 border-b items-center justify-between rounded-t-sm bg-zinc-900">
                     {languages.map((language) => (
                         <div
                             key={language}
@@ -65,6 +65,7 @@ function ApiCode({ selectedDomain, apiGenerator, setApiGenerator }: ApiCodeProps
                     </pre>
                 </div>
             </div>}
+            
         </div>
     )
 }

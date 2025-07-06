@@ -2,26 +2,26 @@
 import { domainTableData, webhookdata, WebhookProps, Webhooks } from "@/data"
 import { SelectDemo } from "./components/select"
 import { DataTable } from "@/components/data-table"
-import { columns } from "./components/columns"
+import { useColumns } from "./components/columns"
 import { GlobalContext } from "@/context"
 import { useContext, useEffect, useState } from "react"
 import { AddWebhook } from "./addwebhook"
 import Delete from "@/components/delete"
 
 
-function page() {
+function Webhook() {
     const [data, setData] = useState<WebhookProps[]>(Webhooks);
     const [input,setInput] = useState('')
     const context = useContext(GlobalContext)
-    const datacolumns = columns()
+    const datacolumns = useColumns()
 
     if (!context) return <div>Context not defined</div>
-    const { webhookSelectedDomain, setActionDisplay, addWebhook, setAddWebhook, removeWebhook, setRemoveWebhook } = context;
+    const { webhookSelectedDomain, addWebhook, setAddWebhook, removeWebhook, setRemoveWebhook } = context;
 
 
     useEffect(() => {
         setData(handleData())
-    }, [webhookSelectedDomain])
+    }, [webhookSelectedDomain,handleData])
 
     function handleData() {
 
@@ -123,4 +123,4 @@ function page() {
     )
 }
 
-export default page
+export default Webhook

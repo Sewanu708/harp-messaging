@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { addWebhookProps, GlobalContext } from "@/context";
 
 
-export function columns() {
+export function useColumns() {
     const context = useContext(GlobalContext)
     let setAddWebhook: (value: addWebhookProps) => void;
     let setRemoveWebhook: (value: addWebhookProps) => void;

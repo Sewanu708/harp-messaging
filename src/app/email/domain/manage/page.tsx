@@ -15,6 +15,7 @@ function Manage() {
     const [data, setData] = useState<domainProps[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
+    const [deleteText, setDeleteText] = useState('')
     const columns = useColumns()
 
     async function fetchData() {
@@ -27,11 +28,11 @@ function Manage() {
                 return
             }
             const feedback = await response.json()
-            console.log(feedback)
+
             setData(feedback)
             setError('')
         } catch (err: any) {
-            setError('Something went wrong while loading domains.')
+            setError(err)
         } finally {
             setLoading(false)
         }
@@ -57,7 +58,9 @@ function Manage() {
                 setError(`Error deleting ${id}`)
                 return
             }
-            const feedback = response.json()
+            const feedback = await response.json()
+            setDeleteText(feedback.message)
+
             setError('')
 
         } catch (error) {
@@ -83,6 +86,12 @@ function Manage() {
             {error && (
                 <div className="my-4 p-4 bg-red-100 border border-red-300 text-red-700 rounded-md">
                     {error}
+                </div>
+            )}
+
+            {deleteText && (
+                <div className="my-4 p-4 bg-[#0F6C68] border border[#0F6C68] text-green-300 rounded-md">
+                    {deleteText}
                 </div>
             )}
 

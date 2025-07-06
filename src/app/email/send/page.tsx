@@ -10,9 +10,6 @@ import ApiCode from "@/components/ApiCode";
 import { GlobalContext } from "@/context";
 function Email() {
     const [apiGenerator, setApiGenerator] = useState(false)
-    const context = useContext(GlobalContext)
-    if (!context) return ('context not found')
-    const { isAddDomainOpen, selectedDomain, setIsAddDomainOpen, setSelectedDomain } = context
     const [data, setData] = useState({
         to: '', subject: '', html: '',
 
@@ -22,6 +19,12 @@ function Email() {
         to: '',
     })
     const [response, setResponse] = useState('')
+    const context = useContext(GlobalContext)
+
+    if (!context) return ('context not found')
+
+    const { isAddDomainOpen, selectedDomain, setIsAddDomainOpen, setSelectedDomain } = context
+
     async function PostData() {
         setLoading(true)
         try {

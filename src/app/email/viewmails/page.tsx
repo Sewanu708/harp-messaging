@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react"
 import { dataProps } from "@/data"
 import { useRouter } from "next/navigation"
-import { mainDataColumns } from "@/app/email/viewmails/columns"
+import { useColumns } from "@/app/email/viewmails/columns"
 import { DataTable } from "@/components/data-table"
 import { useEffect, useState } from "react"
 import { TableSkeleton } from "@/components/skeleton"
@@ -13,7 +13,7 @@ function View() {
     const [data, setData] = useState<dataProps[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
-
+    const columns = useColumns()
     async function fetchData() {
         setLoading(true)
         try {
@@ -26,8 +26,9 @@ function View() {
             const feedback = await response.json()
             setData(feedback)
             setError('')
-        } catch (err: any) {
-            setError('Something went wrong while loading emails.')
+        } catch (err) {
+
+            setError(`Something went wrong while loading emails., ${err}`)
         } finally {
             setLoading(false)
         }
@@ -64,7 +65,7 @@ function View() {
             {loading ? (
                 <TableSkeleton columns={5} rows={5} showFilter={true} showPagination={true} />
             ) : (
-                <DataTable filterkey="messageId" columns={mainDataColumns} data={data} />
+                <DataTable filterkey="messageId" columns={columns} data={data} />
             )}
         </section>
     )

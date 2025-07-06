@@ -3,9 +3,7 @@ import { TableSkeleton } from "@/components/skeleton";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-interface Props {
-    params: { id: string }
-}
+
 interface mailProp {
     subject: string,
     recipient: string,
@@ -19,17 +17,18 @@ interface mailProp {
     messageId: string,
     domain: string
 }
-function MailPreview({ params }: { params: { id: string } }) {
-    const id = params
-
+function MailPreview({ params }: { params: Promise<{ id: string }> }) {
+    const [id, setId] = useState('')
     const [data, setData] = useState<mailProp>()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
     const navigate = useRouter()
     async function fetchData() {
         setLoading(true)
+         if (!id) return;
+         console.log(id)
         try {
-            const response = await fetch(`email/viewmails/${id}/api`)
+            const response = await fetch(`/email/viewmails/${id}/api`)
             if (!response.ok) {
                 setError('Something went wrong while loading mail')
                 setLoading(false)
@@ -40,21 +39,27 @@ function MailPreview({ params }: { params: { id: string } }) {
             setData(feedback)
             setError('')
         } catch (err: any) {
-            setError('Something went wrong while loading mail.')
+            setError(err)
         } finally {
             setLoading(false)
         }
     }
-
+    useEffect(() => {
+        const paramPromise = async () => {
+            const paramPromise = await params
+            setId(paramPromise.id)
+        }
+        paramPromise()
+    }, [params])
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [id])
     useEffect(() => {
+        
         const id = setTimeout(() => setError(''), 5000)
         return () => clearTimeout(id)
     }, [error])
 
-    console.log(data)
     return (
         <div className="w-full mx-auto p-6 border  space-y-6">
 

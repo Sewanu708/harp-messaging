@@ -1,7 +1,7 @@
 'use client'
 import { TableSkeleton } from "@/components/skeleton";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 
 interface mailProp {
@@ -25,8 +25,8 @@ function MailPreview({ params }: { params: Promise<{ id: string }> }) {
     const navigate = useRouter()
     async function fetchData() {
         setLoading(true)
-         if (!id) return;
-         console.log(id)
+        if (!id) return;
+        console.log(id)
         try {
             const response = await fetch(`/email/viewmails/${id}/api`)
             if (!response.ok) {
@@ -44,6 +44,7 @@ function MailPreview({ params }: { params: Promise<{ id: string }> }) {
             setLoading(false)
         }
     }
+    const memoizeFetch = useCallback(() => { fetchData() }, [id])
     useEffect(() => {
         const paramPromise = async () => {
             const paramPromise = await params
@@ -52,10 +53,10 @@ function MailPreview({ params }: { params: Promise<{ id: string }> }) {
         paramPromise()
     }, [params])
     useEffect(() => {
-        fetchData()
-    }, [id])
+        memoizeFetch()
+    }, [memoizeFetch])
     useEffect(() => {
-        
+
         const id = setTimeout(() => setError(''), 5000)
         return () => clearTimeout(id)
     }, [error])

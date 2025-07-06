@@ -7,7 +7,7 @@ interface DeleteProps {
     text: string,
     deletefunc: () => void,
     actionWord: string,
-    closeFunc?: (value: { state: boolean, id: string, event: string }) => void
+    closeFunc?: () => void
 }
 function Delete({ text, deletefunc, actionWord, closeFunc }: DeleteProps) {
     const context = useContext(GlobalContext)
@@ -25,7 +25,7 @@ function Delete({ text, deletefunc, actionWord, closeFunc }: DeleteProps) {
                         className="cursor-pointer transition-all duration-300 ease-in-out hover:bg-zinc-100"
                         onClick={() => {
                             setActionDisplay(false);
-                            if (closeFunc) closeFunc({ state: false, id: '', event: '' })
+                            if (closeFunc) closeFunc()
                         }}
                     >
                         Cancel

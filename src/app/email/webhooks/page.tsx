@@ -8,40 +8,40 @@ import { useContext, useEffect, useState } from "react"
 import { AddWebhook } from "./addwebhook"
 import Delete from "@/components/delete"
 
-function handleData(webhookSelectedDomain:string) {
+function handleData(webhookSelectedDomain: string) {
 
-        const data = webhookdata.find(data => data.id === webhookSelectedDomain)?.metadata;
+    const data = webhookdata.find(data => data.id === webhookSelectedDomain)?.metadata;
 
-        const Webhooks = [{
-            id: '1',
-            event: 'delivered',
-            url: data?.delivered ?? "",
-        }, {
-            id: '2',
-            event: 'opened',
-            url: data?.opened ?? "",
-        }, {
-            id: '3',
-            event: 'clicked',
-            url: data?.clicked ?? "",
-        }, {
-            id: '4',
-            event: 'bounced',
-            url: data?.bounced ?? "",
-        }, {
-            id: '5',
-            event: 'complained',
-            url: data?.complained ?? "",
-        }, {
-            id: '6',
-            event: 'unsubscribed',
-            url: data?.unsubscribed ?? "",
-        }]
-        return Webhooks
-    }
+    const Webhooks = [{
+        id: '1',
+        event: 'delivered',
+        url: data?.delivered ?? "",
+    }, {
+        id: '2',
+        event: 'opened',
+        url: data?.opened ?? "",
+    }, {
+        id: '3',
+        event: 'clicked',
+        url: data?.clicked ?? "",
+    }, {
+        id: '4',
+        event: 'bounced',
+        url: data?.bounced ?? "",
+    }, {
+        id: '5',
+        event: 'complained',
+        url: data?.complained ?? "",
+    }, {
+        id: '6',
+        event: 'unsubscribed',
+        url: data?.unsubscribed ?? "",
+    }]
+    return Webhooks
+}
 function Webhook() {
     const [data, setData] = useState<WebhookProps[]>(Webhooks);
-    const [input,setInput] = useState('')
+    const [input, setInput] = useState('')
     const context = useContext(GlobalContext)
     const datacolumns = useColumns()
     useEffect(() => {
@@ -50,7 +50,7 @@ function Webhook() {
     if (!context) return <div>Context not defined</div>
     const { webhookSelectedDomain, addWebhook, setAddWebhook, removeWebhook, setRemoveWebhook } = context;
 
-    
+
 
     function deletehook() {
         const index = webhookdata.findIndex(data => data.id === webhookSelectedDomain);
@@ -68,7 +68,7 @@ function Webhook() {
         };
 
     }
-     function addhook() {
+    function addhook() {
         const index = webhookdata.findIndex(data => data.id === webhookSelectedDomain);
         if (index > -1) {
             const existing = webhookdata[index]
@@ -84,7 +84,9 @@ function Webhook() {
         };
 
     }
-
+    function closeFunc() {
+        setRemoveWebhook({ state: false, id: '', event: '' })
+    }
     const domainName = domainTableData.find(data => data.id === webhookSelectedDomain)?.domain
 
     return (
@@ -114,7 +116,7 @@ function Webhook() {
 
 
             {(addWebhook.state) && <AddWebhook details={addWebhook} input={input} setInput={setInput} handleSubmit={addhook} onClose={setAddWebhook} domain={domainName} />}
-            {removeWebhook.state && <Delete text="Are you sure you want to remove this" deletefunc={deletehook} closeFunc={setRemoveWebhook} actionWord="Remove" />}
+            {removeWebhook.state && <Delete text="Are you sure you want to remove this" deletefunc={deletehook} closeFunc={closeFunc} actionWord="Remove" />}
         </section>
 
     )

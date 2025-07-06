@@ -2,7 +2,7 @@
 import AddDomainPopup from "@/components/AddDomainPopup"
 import { Button } from "@/components/ui/button"
 import { BoldIcon, Heading1Icon, Heading2Icon, ImageIcon, ItalicIcon, Link2Icon, ListOrdered, SendIcon } from "lucide-react"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LuLayoutTemplate } from "react-icons/lu";
 import { MdClose, MdDomain } from "react-icons/md"
 import Link from "next/link";
@@ -13,8 +13,52 @@ function Email() {
     const context = useContext(GlobalContext)
     if (!context) return ('context not found')
     const { isAddDomainOpen, selectedDomain, setIsAddDomainOpen, setSelectedDomain } = context
-    
+    const [data, setData] = useState({
+        to: '', subject: '', html: '',
 
+    })
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState({
+        to: '',
+    })
+    const [response, setResponse] = useState('')
+    async function PostData() {
+        setLoading(true)
+        try {
+            const response = await fetch('/email/send/api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    to: data.to,
+                    from: selectedDomain,
+                    subject: data.subject,
+                    html: data.html
+                }),
+            })
+            if (!response.ok) {
+                setResponse('Error: Message not Sent');
+                setLoading(false);
+                return;
+            }
+
+            const feedback = await response.json()
+            setResponse(feedback.message || " Email sent successfully!");
+            setLoading(false)
+        } catch (error) {
+            console.log('Error')
+            setLoading(false)
+        }
+
+    }
+    useEffect(() => {
+        const clearId = setTimeout(() => {
+            setResponse('')
+        }, 5000)
+
+        return () => clearTimeout(clearId)
+    }, [response])
     return (
         <section className="h-screen overflow-y-auto">
             <div className="text-xl sm:text-2xl py-4 px-2 sm:px-4 fixed w-full bg-white   text-[#0F6C68] z-10">Send Email</div>
@@ -27,7 +71,7 @@ function Email() {
                             <div className="w-full sm:w-fit flex flex-col sm:flex-row items-stretch sm:items-center justify-between rounded-md border p-2 border-zinc-300 gap-2">
                                 <label className="text-sm font-semibold text-zinc-800 border-b sm:border-b-0 sm:border-r border-zinc-300 pr-0 sm:pr-4 pb-2 sm:pb-0">Domain</label>
                                 <input type="email" placeholder="Enter recipient's email" className="outline-0 px-4 focus:outline-none flex-1" defaultValue={selectedDomain} disabled />
-                                <span><MdClose className="text-zinc-400 hover:text-zinc-600 cursor-pointer" onClick={() =>{ setSelectedDomain(''); setApiGenerator(false)}} /></span>
+                                <span><MdClose className="text-zinc-400 hover:text-zinc-600 cursor-pointer" onClick={() => { setSelectedDomain(''); setApiGenerator(false) }} /></span>
                             </div>
                         ) : (
                             <>
@@ -39,21 +83,44 @@ function Email() {
                         )}
                     </div>
 
-                    <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+                    <form className="flex flex-col gap-4" onSubmit={(e) => {
+                        e.preventDefault();
+                        if ((error.to.length > 1)) return;
+                        PostData()
+                    }}>
                         <div className="flex flex-col sm:flex-row border-b items-start sm:items-center gap-2">
                             <label className="text-sm font-semibold text-zinc-800">Recipient:</label>
-                            <input type="text" placeholder="Enter recipient's email" className="p-2 border-zinc-300 focus:outline-none w-full sm:w-auto" required disabled={selectedDomain.length === 0} />
+                            <input type="text" placeholder="Enter recipient's email" className="p-2 border-zinc-300 focus:outline-none w-full sm:w-auto" required onInput={(e) => {
+                                const { value } = (e.target as HTMLInputElement)
+                                if (value === '') {
+                                    setError(prev => ({ ...prev, to: '' }))
+                                    return
+                                }
+                                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                                    setError(prev => ({ ...prev, to: 'Recipient address does not match format' }))
+                                    return
+                                }
+                                setData(prev => ({ ...prev, to: value }))
+                                setError(prev => ({ ...prev, to: '' }))
+                            }} disabled={selectedDomain.length === 0} />
                         </div>
+                        {error.to.length > 0 && <p className="text-sm text-red-500">{error.to}</p>}
 
                         <div className="flex flex-col sm:flex-row border-b items-start sm:items-center gap-2">
                             <label className="text-sm font-semibold text-zinc-800">Subject:</label>
-                            <input type="text" placeholder="Enter subject" className="p-2 disabled:cursor-pointer border-zinc-300 focus:outline-none w-full sm:w-auto" required disabled={selectedDomain.length === 0} autoFocus />
+                            <input type="text" placeholder="Enter subject" className="p-2 disabled:cursor-pointer border-zinc-300 focus:outline-none w-full sm:w-auto" required disabled={selectedDomain.length === 0} autoFocus onInput={(e) => {
+                                const { value } = (e.target as HTMLInputElement)
+                                setData(prev => ({ ...prev, subject: value }))
+                            }} />
                         </div>
 
-                        <textarea placeholder="Enter your message" className="p-2 focus:outline-none focus:border-[#0F6C68] w-full" rows={5} required disabled={selectedDomain.length === 0}></textarea>
+                        <textarea placeholder="Enter your message" className="p-2 focus:outline-none focus:border-[#0F6C68] w-full" rows={5} required disabled={selectedDomain.length === 0} onInput={(e) => {
+                            const { value } = (e.target as HTMLInputElement)
+                            setData(prev => ({ ...prev, html: value }))
+                        }}></textarea>
 
                         <div className="flex flex-wrap items-start p-2 rounded-md bg-white shadow-sm border border-zinc-200 mt-2 gap-2">
-                            <Button className="cursor-pointer w-full sm:w-auto" disabled={selectedDomain.length === 0}>
+                            <Button type="submit" className="cursor-pointer w-full sm:w-auto" disabled={(selectedDomain.length === 0 || loading)}>
                                 Send Email <span className="ml-2"><SendIcon /></span>
                             </Button>
 
@@ -89,8 +156,13 @@ function Email() {
                 </div>
 
                 <ApiCode selectedDomain={selectedDomain} setApiGenerator={setApiGenerator} apiGenerator={apiGenerator} />
-               
+
             </section>
+            {
+                response.length > 0 && <div className="fixed top-4 right-4 z-50 bg-[#0F6C68] text-white px-4 py-3 rounded-lg shadow-lg animate-fade-in-down">
+                    <span className="font-medium">{response}</span>
+                </div>
+            }
         </section>
 
     )

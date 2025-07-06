@@ -17,7 +17,8 @@ interface GlobalContextType {
     setWebhookSelectedDomain: (value: string) => void,
     addWebhook: addWebhookProps,
     setAddWebhook: (value: addWebhookProps) => void, removeWebhook: addWebhookProps,
-    setRemoveWebhook: (value: addWebhookProps) => void,
+    setRemoveWebhook: (value: addWebhookProps) => void, deleteDomain: { id: string, state: boolean },
+    setDeleteDomain: (value: { id: string, state: boolean }) => void
 };
 
 
@@ -44,9 +45,11 @@ function GlobalState({ children }: { children: React.ReactNode }) {
     const [addWebhook, setAddWebhook] = useState<addWebhookProps>({ id: '', event: '', state: false })
     const [removeWebhook, setRemoveWebhook] = useState<addWebhookProps>({ id: '', event: '', state: false })
 
+    const [deleteDomain, setDeleteDomain] = useState({ id: '', state: false })
+
     return (
         <GlobalContext.Provider value={{
-            selectedChannel, actionDisplay, isAddDomainOpen, setIsAddDomainOpen, setActionDisplay, setSelectedChannel, selectedDomain, setSelectedDomain, domainData, setDomainData, webhookSelectedDomain, setWebhookSelectedDomain, addWebhook, setAddWebhook, removeWebhook, setRemoveWebhook
+            selectedChannel, actionDisplay, isAddDomainOpen, setIsAddDomainOpen, setActionDisplay, setSelectedChannel, selectedDomain, setSelectedDomain, domainData, setDomainData, webhookSelectedDomain, setWebhookSelectedDomain, addWebhook, setAddWebhook, removeWebhook, setRemoveWebhook, deleteDomain, setDeleteDomain
         }}>
             {children}
         </GlobalContext.Provider>

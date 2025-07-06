@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({
                         onChange={(event) =>
                             table.getColumn(filterkey)?.setFilterValue(event.target.value)
                         }
-                        className="w-full "
+                        className="w-full max-w-sm "
                     /> : ''
                 }
 
@@ -112,8 +112,9 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-between w-full space-x-2 py-4">
-                <Button
+            <div className="flex items-center justify-between w-full  py-4">
+             <div className="space-x-2 flex items-center">
+                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => table.previousPage()}
@@ -129,6 +130,16 @@ export function DataTable<TData, TValue>({
                 >
                     Next
                 </Button>
+             </div>
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                    <span>
+                        Page {table.getState().pagination.pageIndex + 1} of{" "}
+                        {table.getPageCount()}
+                    </span>
+                    <span className="hidden sm:inline">
+                        ({table.getFilteredRowModel().rows.length} total rows)
+                    </span>
+                </div>
             </div>
         </div>
 

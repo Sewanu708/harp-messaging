@@ -32,7 +32,7 @@ export default function Welcome() {
                         >
                             <CardHeader className="flex  items-center justify-start gap-x-2">
                                 <item.icon className="text-xl text-[#0F6C68]" />
-                                <CardTitle className="text-lg">{item.header}</CardTitle>
+                                <CardTitle className="text-lg font-[500]">{item.header}</CardTitle>
                             </CardHeader>
                             <CardContent className="h-8">
                                 <CardDescription>{item.description}</CardDescription>

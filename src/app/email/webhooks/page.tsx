@@ -14,14 +14,14 @@ function Webhook() {
     const [input,setInput] = useState('')
     const context = useContext(GlobalContext)
     const datacolumns = useColumns()
-
+    useEffect(() => {
+        setData(handleData())
+    }, [context?.webhookSelectedDomain,handleData])
     if (!context) return <div>Context not defined</div>
     const { webhookSelectedDomain, addWebhook, setAddWebhook, removeWebhook, setRemoveWebhook } = context;
 
 
-    useEffect(() => {
-        setData(handleData())
-    }, [webhookSelectedDomain,handleData])
+    
 
     function handleData() {
 

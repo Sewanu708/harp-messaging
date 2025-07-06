@@ -42,9 +42,9 @@ function Manage() {
         fetchData()
     }, [])
     useEffect(() => {
-        const id = setTimeout(() => setError(''), 5000)
+        const id = setTimeout(() => {setError(''); setDeleteText('')}, 5000)
         return () => clearTimeout(id)
-    }, [error])
+    }, [error,deleteText])
     const context = useContext(GlobalContext)
     if (!context) return 'Context not defined'
     const { deleteDomain, setDeleteDomain } = context
@@ -62,7 +62,7 @@ function Manage() {
             setDeleteText(feedback.message)
 
             setError('')
-
+            fetchData()
         } catch (error) {
             setError(`Error deleting ${id} ${error}`)
         }

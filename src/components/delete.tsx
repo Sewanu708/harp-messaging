@@ -25,7 +25,7 @@ function Delete({ text, deletefunc, actionWord, closeFunc }: DeleteProps) {
                         className="cursor-pointer transition-all duration-300 ease-in-out hover:bg-zinc-100"
                         onClick={() => {
                             setActionDisplay(false);
-                            if (closeFunc) closeFunc()
+                            closeFunc?.()
                         }}
                     >
                         Cancel

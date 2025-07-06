@@ -7,7 +7,7 @@ function generateMessageId() {
   return "msg_" + Math.floor(Math.random() * 10000);
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest): Promise<NextResponse> {
   const body = await req.json();
 
   return new Promise((resolve) => {

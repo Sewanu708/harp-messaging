@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { newEmailData } from "@/data";
 
-
+            
 function generateMessageId() {
   return "msg_" + Math.floor(Math.random() * 10000);
 }

@@ -50,7 +50,7 @@ function Email() {
             setResponse(feedback.message || " Email sent successfully!");
             setLoading(false)
         } catch (error) {
-            console.log('Error')
+            console.log(error)
             setLoading(false)
         }
 

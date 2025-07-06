@@ -38,8 +38,8 @@ function MailPreview({ params }: { params: Promise<{ id: string }> }) {
             console.log(feedback)
             setData(feedback)
             setError('')
-        } catch (err: any) {
-            setError(err)
+        } catch (err) {
+            setError(`${err}`)
         } finally {
             setLoading(false)
         }
@@ -99,7 +99,7 @@ function MailPreview({ params }: { params: Promise<{ id: string }> }) {
                         <div className="space-y-2">
                             <p>Hi John,</p>
                             <p>
-                                Thank you for signing up! You're now part of the family.
+                                Thank you for signing up! You&apos;re now part of the family.
                             </p>
                             <div className="text-center">
                                 <button className="px-4 py-2 bg-[#0F6C68] text-white text-sm rounded-md shadow">

@@ -31,8 +31,8 @@ function Manage() {
 
             setData(feedback)
             setError('')
-        } catch (err: any) {
-            setError(err)
+        } catch (err) {
+            setError(`${err}`)
         } finally {
             setLoading(false)
         }
@@ -64,7 +64,7 @@ function Manage() {
             setError('')
 
         } catch (error) {
-            setError(`Error deleting ${id}`)
+            setError(`Error deleting ${id} ${error}`)
         }
     }
     function closeFunc() {

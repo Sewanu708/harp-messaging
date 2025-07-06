@@ -18,10 +18,10 @@ export async function DELETE(
   const index = domainTableData.findIndex(domain => domain.id === params.id)
 
   if (index === -1) {
-    return NextResponse.json({ error: "Email not found" }, { status: 404 })
+    return NextResponse.json({ error: "Domain not found" }, { status: 404 })
   }
 
   domainTableData.splice(index, 1)
 
-  return NextResponse.json({ message: "Email deleted successfully" }, { status: 200 })
+  return NextResponse.json({ message: "Domain deleted successfully" }, { status: 200 })
 }

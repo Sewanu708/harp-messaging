@@ -50,7 +50,7 @@ function Manage() {
     const { deleteDomain, setDeleteDomain } = context
     async function deleteDomainFunction(id: string) {
         try {
-            const response = await fetch(`/email/domain/api/${id}`, {
+            const response = await fetch(`/email/domain/${id}`, {
                 method: 'DELETE'
             })
             if (!response.ok) {

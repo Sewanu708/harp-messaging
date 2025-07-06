@@ -3,9 +3,11 @@ import { NextResponse } from "next/server"
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const index = domainTableData.findIndex(domain => domain.id === params.id)
+  const { id } = await params
+  
+  const index = domainTableData.findIndex(domain => domain.id === id)
 
   if (index === -1) {
     return NextResponse.json({ error: "Email not found" }, { status: 404 })

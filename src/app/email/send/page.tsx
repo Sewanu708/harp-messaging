@@ -19,10 +19,15 @@ function Email() {
         to: '',
     })
     const [response, setResponse] = useState('')
+     useEffect(() => {
+        const clearId = setTimeout(() => {
+            setResponse('')
+        }, 5000)
+
+        return () => clearTimeout(clearId)
+    }, [response])
     const context = useContext(GlobalContext)
-
     if (!context) return ('context not found')
-
     const { isAddDomainOpen, selectedDomain, setIsAddDomainOpen, setSelectedDomain } = context
 
     async function PostData() {
@@ -55,13 +60,7 @@ function Email() {
         }
 
     }
-    useEffect(() => {
-        const clearId = setTimeout(() => {
-            setResponse('')
-        }, 5000)
-
-        return () => clearTimeout(clearId)
-    }, [response])
+   
     return (
         <section className="h-screen overflow-y-auto">
             <div className="text-xl sm:text-2xl py-4 px-2 sm:px-4 fixed w-full bg-white   text-[#0F6C68] z-10">Send Email</div>

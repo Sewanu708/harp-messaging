@@ -8,22 +8,7 @@ import { useContext, useEffect, useState } from "react"
 import { AddWebhook } from "./addwebhook"
 import Delete from "@/components/delete"
 
-
-function Webhook() {
-    const [data, setData] = useState<WebhookProps[]>(Webhooks);
-    const [input,setInput] = useState('')
-    const context = useContext(GlobalContext)
-    const datacolumns = useColumns()
-    useEffect(() => {
-        setData(handleData())
-    }, [context?.webhookSelectedDomain,handleData])
-    if (!context) return <div>Context not defined</div>
-    const { webhookSelectedDomain, addWebhook, setAddWebhook, removeWebhook, setRemoveWebhook } = context;
-
-
-    
-
-    function handleData() {
+function handleData(webhookSelectedDomain:string) {
 
         const data = webhookdata.find(data => data.id === webhookSelectedDomain)?.metadata;
 
@@ -54,6 +39,18 @@ function Webhook() {
         }]
         return Webhooks
     }
+function Webhook() {
+    const [data, setData] = useState<WebhookProps[]>(Webhooks);
+    const [input,setInput] = useState('')
+    const context = useContext(GlobalContext)
+    const datacolumns = useColumns()
+    useEffect(() => {
+        setData(handleData(webhookSelectedDomain))
+    }, [context?.webhookSelectedDomain])
+    if (!context) return <div>Context not defined</div>
+    const { webhookSelectedDomain, addWebhook, setAddWebhook, removeWebhook, setRemoveWebhook } = context;
+
+    
 
     function deletehook() {
         const index = webhookdata.findIndex(data => data.id === webhookSelectedDomain);
@@ -66,7 +63,7 @@ function Webhook() {
                 }
             }
             webhookdata.splice(index, 1, newdata);
-            setData(handleData())
+            setData(handleData(webhookSelectedDomain))
             setRemoveWebhook({ state: false, id: '', event: '' })
         };
 
@@ -82,7 +79,7 @@ function Webhook() {
                 }
             }
             webhookdata.splice(index, 1, newdata);
-            setData(handleData())
+            setData(handleData(webhookSelectedDomain))
             setAddWebhook({ state: false, id: '', event: '' })
         };
 

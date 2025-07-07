@@ -28,7 +28,7 @@ export default function Welcome() {
                     <Link href={item.pathName} onClick={() => setSelectedChannel(item.header)} key={index}>
                         <Card
 
-                            className="hover:shadow-md transition-shadow  cursor-pointer   duration-300 bg-white rounded-md"
+                            className="cursor-pointer bg-white rounded-md"
                         >
                             <CardHeader className="flex  items-center justify-start gap-x-2">
                                 <item.icon className="text-xl text-[#0F6C68]" />

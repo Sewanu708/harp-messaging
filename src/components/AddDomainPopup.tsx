@@ -16,7 +16,7 @@ function AddDomainPopup() {
     if (!context) return ('context not found')
     const {  setIsAddDomainOpen } = context
     return (
-        <div className="sticky h-screen bg-white inset-0 flex flex-col w-full items-center justify-start z-50">
+        <div className="absolute h-screen bg-white inset-0 flex flex-col w-full items-center justify-start z-50">
 
             <div className="overflow-x-auto rounded-md  w-full p-8">
                 <div className="w-full flex item-end justify-between">

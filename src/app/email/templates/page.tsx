@@ -35,9 +35,7 @@ function Template() {
         </div>
         <div>
 
-          <Button onClick={() => navigate.push('/email/templates/create')} className=" capitalize mt-4 text-white px-5 py-2 rounded bg-[#0F6C68] cursor-pointer hover:bg-zinc-700">
-            <PlusIcon />Create New Template
-          </Button>
+       
         </div>
       </div>
 
@@ -45,13 +43,10 @@ function Template() {
 
       <div className=" flex flex-wrap item-start justify-start gap-4">
         <Card onClick={()=>navigate.push('/email/templates/create')} className="w-full md:w-[250px] shadow-md hover:shadow-lg transition-all p-4 duration-200 border-zinc-200">
-
-
           <CardContent className="text-sm  h-32 rounded-md bg-zinc-200 text-zinc-700 flex items-center justify-center cursor-pointer">
             <PlusIcon />
           </CardContent>
-
-          <div className="flex flex-col  items-start justify-start">
+          <div className="flex flex-col w-full md:w-[350px] items-start justify-start">
             <p className="text-lg text-zinc-800 font-semibold">Blank Template</p>
             <p className="text-sm text-zinc-500">Create a new blank template</p>
           </div>

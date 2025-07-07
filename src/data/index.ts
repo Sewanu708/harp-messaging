@@ -2,7 +2,7 @@ import { MdOutlineNotifications } from 'react-icons/md';
 import { FiMail } from "react-icons/fi";
 import { RiMessage2Line } from 'react-icons/ri';
 import { BsWhatsapp } from 'react-icons/bs';
-import { Api } from '@/app/email/api/columns';
+import { Api } from '@/app/settings/api/columns';
 function randomId() {
   return new Date().getTime() + Math.random().toString(36).substring(2, 9);
 }
@@ -34,16 +34,6 @@ export const sidebarItems = [
           , {
             label: "Add Domain",
             path: "/email/domain/create"
-          }
-        ]
-      },
-      {
-        label: "API Keys",
-        id: randomId(),
-        items: [
-          {
-            label: "Manage Keys",
-            path: "/email/api"
           }
         ]
       },

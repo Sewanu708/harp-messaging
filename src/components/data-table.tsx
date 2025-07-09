@@ -26,13 +26,13 @@ import { useState } from "react"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
-    data: TData[], filterkey?: string
+    data: TData[], filterkey?: string, paginate?: boolean
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
-    filterkey,
+    filterkey, paginate
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
@@ -55,19 +55,20 @@ export function DataTable<TData, TValue>({
     return (
 
         <div className="w-full">
-            <div className="flex items-center py-4">
-                {
-                    filterkey ? <Input
+            {
+                filterkey ? <div className="flex items-center py-4">
+                    <Input
                         placeholder={`Filter by ${filterkey}`}
                         value={(table.getColumn(filterkey)?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
                             table.getColumn(filterkey)?.setFilterValue(event.target.value)
                         }
                         className="w-full max-w-sm "
-                    /> : ''
-                }
+                    /> 
 
-            </div>
+
+                </div> : ''
+    }
             <div className="rounded-md border">
                 <Table>
                     <TableHeader className="">
@@ -112,35 +113,38 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-between w-full  py-4">
-             <div className="space-x-2 flex items-center">
-                   <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    Previous
-                </Button>
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    Next
-                </Button>
-             </div>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                    <span>
-                        Page {table.getState().pagination.pageIndex + 1} of{" "}
-                        {table.getPageCount()}
-                    </span>
-                    <span className="hidden sm:inline">
-                        ({table.getFilteredRowModel().rows.length} total rows)
-                    </span>
-                </div>
-            </div>
+            {
+                !paginate ? <div className="flex items-center justify-between w-full  py-4">
+                    <div className="space-x-2 flex items-center">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => table.previousPage()}
+                            disabled={!table.getCanPreviousPage()}
+                        >
+                            Previous
+                        </Button>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => table.nextPage()}
+                            disabled={!table.getCanNextPage()}
+                        >
+                            Next
+                        </Button>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                        <span>
+                            Page {table.getState().pagination.pageIndex + 1} of{" "}
+                            {table.getPageCount()}
+                        </span>
+                        <span className="hidden sm:inline">
+                            ({table.getFilteredRowModel().rows.length} total rows)
+                        </span>
+                    </div>
+                </div> : ''
+            }
+
         </div>
 
     )

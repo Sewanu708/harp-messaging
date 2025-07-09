@@ -120,7 +120,7 @@ export interface dataProps {
 }
 export const newEmailData = [
 
- 
+
   {
     subject: "Password Reset Request",
     recipient: "john.smith@mail.com",
@@ -339,6 +339,115 @@ export const Webhooks = [{
   url: '',
 }]
 
+export interface AuthenticationRecordsProps {
+  id: string,
+  domainId: string,
+  type: string,
+  name: string,
+  value: string,
+  status: string
+
+}
+
+export interface TrackingRecordsProps {
+  id: string,
+  domainId: string,
+  type: string,
+  name: string,
+  value: string,
+  status: string,
+  purpose: string,
+
+}
+
+export interface ReceivingRecordssProps {
+  id: string,
+  domainId: string,
+  type: string,
+  name: string,
+  value: string,
+  priority: number,
+  status: string,
+
+}
+export const authenticationRecords = [
+  {
+    id: "auth_01",
+    domainId: "domain001",
+    type: "SPF",
+    name: "mg.example.com",
+    value: "v=spf1 include:mailgun.org ~all",
+    status: "Unverified",
+  },
+  {
+    id: "auth_02",
+    domainId: "domain001",
+    type: "DKIM",
+    name: "krs._domainkey.mg.example.com",
+    value: "k=rsa; p=MIIBIjANBgkq...",
+    status: "Unverified",
+  },
+  {
+    id: "auth_03",
+    domainId: "domain001",
+    type: "DMARC",
+    name: "_dmarc.mg.example.com",
+    value: "v=DMARC1; p=none; rua=mailto:dmarc@example.com",
+    status: "Unverified",
+  }
+];
+
+export const trackingRecords = [
+  {
+    id: "track_01",
+    domainId: "domain001",
+    type: "CNAME",
+    name: "email.mg.example.com",
+    value: "mailgun.org",
+    status: "Verified",
+    purpose: "Click Tracking",
+  },
+  {
+    id: "track_02",
+    domainId: "domain001",
+    type: "CNAME",
+    name: "open.mg.example.com",
+    value: "mailgun.org",
+    status: "Verified",
+    purpose: "Open Tracking",
+  }
+];
+export interface RecordProps {
+  id: string,
+  domainId: string,
+  type: string,
+  name: string,
+  value: string,
+  status: string,
+  purpose?: string,
+  priority?: number
+}
+
+export const receivingRecords = [
+  {
+    id: "recv_01",
+    domainId: "domain001",
+    type: "MX",
+    name: "mg.example.com",
+    value: "mxa.mailgun.org",
+    priority: 10,
+    status: "Pending",
+  },
+  {
+    id: "recv_02",
+    domainId: "domain001",
+    type: "MX",
+    name: "mg.example.com",
+    value: "mxb.mailgun.org",
+    priority: 10,
+    status: "Pending",
+  }
+];
 
 
 

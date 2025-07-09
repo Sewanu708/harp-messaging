@@ -10,7 +10,7 @@ interface colprops{
     priority:boolean,
     purpose:boolean
 }
-export function sendColumn({priority,purpose}:colprops) {
+export function useColumn({priority,purpose}:colprops) {
 
     const [copyName, setCopyName] = useState('')
     const [copyValue, setCopyValue] = useState('')

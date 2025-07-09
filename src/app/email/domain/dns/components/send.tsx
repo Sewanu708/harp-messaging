@@ -1,10 +1,10 @@
 'use client'
 import { DataTable } from "@/components/data-table"
-import { sendColumn } from "./columns"
+import { useColumn } from "./columns"
 import { authenticationRecords } from "@/data"
 
 function SendRecords() {
-    const column = sendColumn({ priority: false, purpose: false })
+    const column = useColumn({ priority: false, purpose: false })
     return (
         <div>
             <div className="font-[600] text-zinc-800 text-lg flex flex-col gap-4">

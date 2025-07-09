@@ -14,7 +14,7 @@ function ConfigureDomain() {
             <div className="w-full flex items-start items-center justify-between gap-4 p-4   bg-white">
 
                 <div className="w-[70%] text-sm text-gray-700 leading-relaxed">
-                    To start sending/receiving/tracking email from this domain, add the following DNS records  to your domain provider (e.g Namecheap, GoDaddy). Once done, click 'Verify' below.
+                    To start sending/receiving/tracking email from this domain, add the following DNS records  to your domain provider (e.g Namecheap, GoDaddy). Once done, click &apos; Verify &apos; below.
                 </div>
                 <div className="">
                     <Button className='bg-[#0F6C68] hover:bg-zinc-600'>Verify</Button>

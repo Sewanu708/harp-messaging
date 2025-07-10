@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react";
-import { domainProps } from "@/data";;
+import { domainProps, domainTableData } from "@/data";;
 import { useRouter } from "next/navigation";
 import { DataTable } from "../../../../components/data-table";
 import { useColumns } from "./columns";
@@ -19,11 +19,12 @@ function Manage() {
     const columns = useColumns()
     useEffect(() => {
         const loadId = setTimeout(() => {
+            setData(domainTableData)
             setLoading(false)
         }, 4000)
 
         return () => clearTimeout(loadId)
-    })
+    },[])
     useEffect(() => {
         const id = setTimeout(() => { setError(''); setDeleteText('') }, 5000)
         return () => clearTimeout(id)

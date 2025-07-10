@@ -5,7 +5,6 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { MdClose, MdDomain } from "react-icons/md"
 import ApiCode from "@/components/ApiCode";
 import { GlobalContext } from "@/context";
-import Tiptap from "./components/editor";
 import TextArea from "./components/form";
 function Email() {
     const [apiGenerator, setApiGenerator] = useState(false)
@@ -74,46 +73,7 @@ function Email() {
                 {(isAddDomainOpen) && <AddDomainPopup />}
 
                 <div className="mt-4 mb-4 p-2 sm:p-4  bg-zinc-100 rounded-md w-full">
-                    {/* <form className="flex flex-col gap-4" onSubmit={(e) => {
-                        e.preventDefault();
-                        if ((error.to.length > 1)) return;
-                        if ((data.html.length < 1) || (data.html === '<p></p>')) {
-                            setError(prev => ({ ...prev, html: 'No content added' }))
-                            return;
-                        }
-                        PostData()
-                    }}>
-                        <div className="flex flex-col sm:flex-row border-b items-start sm:items-center gap-2">
-                            <label className="text-sm font-semibold text-zinc-800">Recipient:</label>
-                            <input type="text" placeholder="Enter recipient's email" className="p-2 border-zinc-300 focus:outline-none w-full sm:w-auto" required onInput={(e) => {
-                                const { value } = (e.target as HTMLInputElement)
-                                if (value === '') {
-                                    setError(prev => ({ ...prev, to: '' }))
-                                    return
-                                }
-                                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                                    setError(prev => ({ ...prev, to: 'Recipient address does not match format' }))
-                                    return
-                                }
-                                setData(prev => ({ ...prev, to: value }))
-                                setError(prev => ({ ...prev, to: '' }))
-                            }} disabled={selectedDomain.length === 0} />
-                        </div>
-                        {error.to.length > 0 && <p className="text-sm text-red-500">{error.to}</p>}
-
-                        <div className="flex flex-col sm:flex-row border-b items-start sm:items-center gap-2">
-                            <label className="text-sm font-semibold text-zinc-800">Subject:</label>
-                            <input type="text" placeholder="Enter subject" className="p-2 disabled:cursor-pointer border-zinc-300 focus:outline-none w-full sm:w-auto" required disabled={selectedDomain.length === 0} autoFocus onInput={(e) => {
-                                const { value } = (e.target as HTMLInputElement)
-                                setData(prev => ({ ...prev, subject: value }))
-                            }} />
-                        </div>
-
-                        {error.html.length > 0 && <p className="text-sm text-red-500">{error.html}</p>}
-                        <Tiptap setHtmlContent={setData} setError={setError} error={error} htmlContent={data} loading={loading} domain={selectedDomain} />
-
-
-                    </form> */}
+                   
                     <TextArea handleSubmit={handleSubmit} loading={loading} error={error} setError={setError} setData={setData} data={data} selectedDomain={selectedDomain} />
                 </div>
             </section>

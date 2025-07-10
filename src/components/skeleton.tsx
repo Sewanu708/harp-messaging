@@ -23,14 +23,13 @@ export function TableSkeleton({
 }: TableSkeletonProps) {
     return (
         <div className="w-full space-y-4">
-            {/* Filter Skeleton */}
+          
             {showFilter && (
                 <div className="flex items-center py-4">
                     <Skeleton className="h-10 w-full max-w-sm" />
                 </div>
             )}
 
-            {/* Table Skeleton */}
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
@@ -61,7 +60,7 @@ export function TableSkeleton({
                 </Table>
             </div>
 
-            {/* Pagination Skeleton */}
+          
             {showPagination && (
                 <div className="flex items-center justify-between w-full space-x-2 py-4">
                     <div className="flex items-center space-x-2">

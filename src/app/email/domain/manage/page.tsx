@@ -17,56 +17,21 @@ function Manage() {
     const [error, setError] = useState('')
     const [deleteText, setDeleteText] = useState('')
     const columns = useColumns()
-
-    async function fetchData() {
-        setLoading(true)
-        try {
-            const response = await fetch(`/email/domain/api`)
-            if (!response.ok) {
-                setError('Error! Failed to load domains.')
-                setLoading(false)
-                return
-            }
-            const feedback = await response.json()
-
-            setData(feedback)
-            setError('')
-        } catch (err) {
-            setError(`${err}`)
-        } finally {
+    useEffect(() => {
+        const loadId = setTimeout(() => {
             setLoading(false)
-        }
-    }
+        }, 4000)
 
+        return () => clearTimeout(loadId)
+    })
     useEffect(() => {
-        fetchData()
-    }, [])
-    useEffect(() => {
-        const id = setTimeout(() => {setError(''); setDeleteText('')}, 5000)
+        const id = setTimeout(() => { setError(''); setDeleteText('') }, 5000)
         return () => clearTimeout(id)
-    }, [error,deleteText])
+    }, [error, deleteText])
     const context = useContext(GlobalContext)
     if (!context) return 'Context not defined'
     const { deleteDomain, setDeleteDomain } = context
-    async function deleteDomainFunction(id: string) {
-        try {
-            const response = await fetch(`/email/domain/${id}`, {
-                method: 'DELETE'
-            })
-            if (!response.ok) {
-                console.log(response)
-                setError(`Error deleting ${id}`)
-                return
-            }
-            const feedback = await response.json()
-            setDeleteText(feedback.message)
 
-            setError('')
-            fetchData()
-        } catch (error) {
-            setError(`Error deleting ${id} ${error}`)
-        }
-    }
     function closeFunc() {
         setDeleteDomain({ id: '', state: false })
     }
@@ -101,7 +66,7 @@ function Manage() {
             {loading ? (
                 <TableSkeleton columns={5} rows={5} showFilter={true} showPagination={true} />
             ) : <DataTable columns={columns} data={data} filterkey="id" />}
-            {deleteDomain?.state && <Delete text="Are you sure you want to remove this" deletefunc={() => deleteDomainFunction(deleteDomain?.id)} closeFunc={closeFunc} actionWord="Remove" />}
+            {deleteDomain?.state && <Delete text="Are you sure you want to remove this" deletefunc={() => { }} closeFunc={closeFunc} actionWord="Remove" />}
         </section>
     )
 }

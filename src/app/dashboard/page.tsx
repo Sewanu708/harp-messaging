@@ -1,70 +1,16 @@
 'use client'
-import KPI from "@/components/Dashboard/KPIs"
-import { FiMail } from "react-icons/fi";
-import { MdSend, MdOutlineError, MdOutlineArrowDropDown } from "react-icons/md";
+import KPI from "@/app/dashboard/components/KPIs"
+import { MdOutlineArrowDropDown } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 import { MdFilterList } from "react-icons/md";
-import Barchart from "@/components/Dashboard/BarChart";
-import { dataProps, newEmailData } from "@/data";
-import Piechart from "@/components/Dashboard/PieChart";
-import Table from "../../components/table";
-const kpiData = [
-    {
-        number: 1200,
-        percentage: 100,
-        icon: <FiMail />,
-        metric: "Total Email",
-    },
-    {
-        number: 950,
-        percentage: 79,
-        icon: <MdSend />,
-        metric: "Total Email Sent",
-    },
-    {
-        number: 50,
-        percentage: 4,
-        icon: <MdOutlineError />,
-        metric: "Total Bounce",
-    }, {
-        number: 50,
-        percentage: 4,
-        icon: <MdOutlineError />,
-        metric: "Total Bounce",
-    },
-];
-const chartData = [
-    { month: "January", data: 186, },
-    { month: "February", data: 305, },
-    { month: "March", data: 237, },
-    { month: "April", data: 73, },
-    { month: "May", data: 209, },
-    { month: "June", data: 214, },
-]
+import Barchart from "@/app/dashboard/components/BarChart";
+import { chartData, kpiData, newEmailData, pieData } from "@/data";
+import Piechart from "@/app/dashboard/components/PieChart";
+import { DataTable } from "@/components/data-table";
+import { columns } from "./components/column";
 
-const pieData = [
-    {
-        name: 'Delivered', value: 400, color: '#f5f5f5'
-    }, {
-        name: 'Opened', value: 280, color: '#0F6C68'
-    }
-]
 
-interface ColumnProps<T> {
-    header: string,
-    accessor: keyof T,
-    render?: (value: string) => React.ReactNode
-}
-const columns: ColumnProps<dataProps>[] = [
-    { header: 'id', accessor: 'messageId' },
-    { header: 'Subject', accessor: 'subject' },
-    { header: 'recipient', accessor: 'recipient' },
-    { header: 'status', accessor: 'status'},
-    { header: 'Sent At', accessor: 'sentAt' }
-];
 function Page() {
- 
-   
     return (
         <section className=" py-4 px-4 w-full h-screen overflow-y-auto">
             <div className="text-[#0F6C68] text-2xl  ">Email Overview</div>
@@ -110,7 +56,7 @@ function Page() {
                 <div className="p-4 bg-white text-[#0F6C68] font-semibold text-lg rounded-t-md shadow-sm border-b border-zinc-200 mb-2">
                     Recent Activity
                 </div>
-                <Table columns={columns} data={newEmailData} maxRow={5} sortDisplay={false} />
+                <DataTable  filterkey="" columns={columns} data={newEmailData} paginate={true}/>
             </div>
 
 

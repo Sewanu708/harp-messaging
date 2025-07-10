@@ -1,7 +1,7 @@
 'use client'
 import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react"
-import { dataProps } from "@/data"
+import { dataProps, newEmailData } from "@/data"
 import { useRouter } from "next/navigation"
 import { useColumns } from "@/app/email/viewmails/columns"
 import { DataTable } from "@/components/data-table"
@@ -14,29 +14,11 @@ function View() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
     const columns = useColumns()
-    async function fetchData() {
-        setLoading(true)
-        try {
-            const response = await fetch('/email/viewmails/api')
-            if (!response.ok) {
-                setError('Error! Failed to load emails.')
-                setLoading(false)
-                return
-            }
-            const feedback = await response.json()
-            setData(feedback)
-            setError('')
-        } catch (err) {
-
-            setError(`Something went wrong while loading emails., ${err}`)
-        } finally {
-            setLoading(false)
-        }
-    }
 
     useEffect(() => {
-        fetchData()
-    }, [])
+        const id = setTimeout(() =>{ setLoading(false); setData(newEmailData) }, 4000)
+        return ()=>clearTimeout(id)
+    },[])
 
     useEffect(() => {
         const id = setTimeout(() => setError(''), 5000)

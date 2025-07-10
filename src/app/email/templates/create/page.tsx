@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { FaCode } from "react-icons/fa"
 import Link from "next/link"
 import { useState } from "react"
-import Save from "./save"
+import Save from "./components/save"
 
 function CreateTemplate() {
     const [save, setSave] = useState(false);

@@ -1,11 +1,12 @@
 'use client'
-import AddDomainPopup from "@/components/AddDomainPopup"
+import AddDomainPopup from "@/app/email/send/components/AddDomainPopup"
 import { Button } from "@/components/ui/button"
-import { useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { MdClose, MdDomain } from "react-icons/md"
 import ApiCode from "@/components/ApiCode";
 import { GlobalContext } from "@/context";
-import Tiptap from "./editor/editor";
+import Tiptap from "./components/editor";
+import TextArea from "./components/form";
 function Email() {
     const [apiGenerator, setApiGenerator] = useState(false)
     const [data, setData] = useState({
@@ -28,38 +29,24 @@ function Email() {
     if (!context) return ('context not found')
     const { isAddDomainOpen, selectedDomain, setIsAddDomainOpen, setSelectedDomain } = context
 
-    async function PostData() {
-        setLoading(true)
-        try {
-            const response = await fetch('/email/send/api', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    to: data.to,
-                    from: selectedDomain,
-                    subject: data.subject,
-                    html: data.html
-                }),
-            })
-            if (!response.ok) {
-                setResponse('Error: Message not Sent');
-                setLoading(false);
-                return;
-            }
-
-            const feedback = await response.json()
-            setResponse(feedback.message || " Email sent successfully!");
-            setLoading(false)
-        } catch (error) {
-            console.log(error)
-            setLoading(false)
+    function handleSubmit(e:FormEvent) {
+        e.preventDefault();
+        if ((error.to.length > 1)) return;
+        if ((data.html.length < 1) || (data.html === '<p></p>')) {
+            setError(prev => ({ ...prev, html: 'No content added' }))
+            return;
         }
-
+        PostData()
+    }
+    function PostData() {
+        setLoading(true)
+        setTimeout(() => {
+            setResponse(" Email sent successfully!");
+            setLoading(false)
+        }, 3000)
     }
 
-   
+
 
     return (
         <section className="h-screen relative">
@@ -87,10 +74,10 @@ function Email() {
                 {(isAddDomainOpen) && <AddDomainPopup />}
 
                 <div className="mt-4 mb-4 p-2 sm:p-4  bg-zinc-100 rounded-md w-full">
-                    <form className="flex flex-col gap-4" onSubmit={(e) => {
+                    {/* <form className="flex flex-col gap-4" onSubmit={(e) => {
                         e.preventDefault();
                         if ((error.to.length > 1)) return;
-                        if ((data.html.length < 1) || (data.html==='<p></p>')) {
+                        if ((data.html.length < 1) || (data.html === '<p></p>')) {
                             setError(prev => ({ ...prev, html: 'No content added' }))
                             return;
                         }
@@ -126,7 +113,8 @@ function Email() {
                         <Tiptap setHtmlContent={setData} setError={setError} error={error} htmlContent={data} loading={loading} domain={selectedDomain} />
 
 
-                    </form>
+                    </form> */}
+                    <TextArea handleSubmit={handleSubmit} loading={loading} error={error} setError={setError} setData={setData} data={data} selectedDomain={selectedDomain} />
                 </div>
             </section>
             {

@@ -5,7 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
-import { MenuBar } from '../menu-bar'
+import { MenuBar } from './menu-bar'
 import Highlight from '@tiptap/extension-highlight'
 import TextStyle from '@tiptap/extension-text-style'
 
@@ -15,9 +15,6 @@ interface Props {
     },error:{
         to: string, html: string
     },setError:(value: { to: string, html: string }) => void
-}
-interface html {
-    to: string, subject: string, html: string
 }
 const Tiptap = ({ loading, domain, htmlContent,setHtmlContent,error,setError }: Props) => {
     const editor = useEditor({

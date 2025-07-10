@@ -3,6 +3,7 @@ import { FiMail } from "react-icons/fi";
 import { RiMessage2Line } from 'react-icons/ri';
 import { BsWhatsapp } from 'react-icons/bs';
 import { Api } from '@/app/settings/api/columns';
+import { MdSend, MdOutlineError, MdOutlineArrowDropDown } from "react-icons/md";
 function randomId() {
   return new Date().getTime() + Math.random().toString(36).substring(2, 9);
 }
@@ -451,7 +452,47 @@ export const receivingRecords = [
 
 
 
+export const kpiData = [
+    {
+        number: 1200,
+        percentage: 100,
+        Icon: FiMail,
+        metric: "Total Email",
+    },
+    {
+        number: 950,
+        percentage: 79,
+        Icon: MdSend ,
+        metric: "Total Email Sent",
+    },
+    {
+        number: 50,
+        percentage: 4,
+        Icon: MdOutlineError ,
+        metric: "Total Bounce",
+    }, {
+        number: 50,
+        percentage: 4,
+        Icon: MdOutlineError,
+        metric: "Total Bounce",
+    },
+];
+export const chartData = [
+    { month: "January", data: 186, },
+    { month: "February", data: 305, },
+    { month: "March", data: 237, },
+    { month: "April", data: 73, },
+    { month: "May", data: 209, },
+    { month: "June", data: 214, },
+]
 
+export const pieData = [
+    {
+        name: 'Delivered', value: 400, color: '#f5f5f5'
+    }, {
+        name: 'Opened', value: 280, color: '#0F6C68'
+    }
+]
 
 
 export const emailTemplates = [
